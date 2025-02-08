@@ -16,7 +16,7 @@ export interface Interests {
 }
 
 export interface Book {
-    chapters: BookChapter[]
+    body: string
     title: string
 }
 

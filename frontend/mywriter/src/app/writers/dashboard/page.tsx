@@ -6,8 +6,6 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { QueueRequest } from "@/lib/user";
 
-
-
 export default function WriterDashboard() {
   const { data: session } = useSession();
   const router = useRouter();
@@ -15,10 +13,6 @@ export default function WriterDashboard() {
   const [loading, setLoading] = useState(true);
   function returnToHome() {
     router.push("/");
-  }
-
-  function handlePlusClick() {
-    router.push("/writers/authorGPT");
   }
 
   useEffect(() => {
@@ -81,8 +75,7 @@ export default function WriterDashboard() {
                 key={item.id}
                 className="border border-battleship rounded-md p-4 bg-white hover:bg-eggshell cursor-pointer"
                 onClick={() => {
-                  router.push(`/writer/authorbookshelf?queueId=${item.id}`);
-                  handlePlusClick();
+                  router.push(`/writers/authorGPT?queueId=${item.id}`);
                 }}
               >
                 <p className="font-semibold">From: {item.fromName}</p>
