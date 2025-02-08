@@ -3,15 +3,18 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "./Components/Providers";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const inter = localFont({
+  src: "./fonts/Inter-VariableFont_opsz,wght.ttf",
+  weight: "100 900", // Supports the full weight range
+  style: "normal",
+  variable: "--font-inter", // Useful for Tailwind
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+
+const robotoMono = localFont({
+  src: "./fonts/RobotoMono-VariableFont_wght.ttf",
   weight: "100 900",
+  style: "normal",
+  variable: "--font-roboto-mono",
 });
 
 export const metadata: Metadata = {
@@ -26,9 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>
