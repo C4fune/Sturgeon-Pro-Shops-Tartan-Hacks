@@ -18,8 +18,8 @@ const robotoMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "CMU Study Groups",
-  description: "Find Study Groups",
+  title: "MyWriter",
+  description: "Bring your stories to fruition",
 };
 
 export default function RootLayout({

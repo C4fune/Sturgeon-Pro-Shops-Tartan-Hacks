@@ -18,7 +18,7 @@ export default function LoginButton() {
     <div>
         {/* Signed in as {session.user.email} <br /> */}
                 <Link
-        href="asccount/bookshelf/"
+        href="account/bookshelf/"
         className="bg-battleship text-eggshell px-4 py-2 rounded-lg hover:bg-eggshell hover:text-battleship border-2 border-battleship"
         >
         Go to Profile
