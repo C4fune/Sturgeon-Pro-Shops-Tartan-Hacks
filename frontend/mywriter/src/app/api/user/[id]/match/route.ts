@@ -49,14 +49,8 @@ export async function GET(request: Request, { params }: {params: { id: string }}
     const data = await openaiRequest([{ role: "user", content: prompt }])
 
     const assistantReply = data.choices?.[0]?.message?.content || "OUT OF API CALLS";
-
-    // console.log(prompt)
-    console.log(assistantReply)
-
     const matchedAuthor = writers[parseInt(assistantReply)]
-
     updateMatchedAuthor(params.id, matchedAuthor.id)
-    
 
     return Response.json(matchedAuthor)
 }
