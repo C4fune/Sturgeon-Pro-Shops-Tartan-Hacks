@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getDocs, getFirestore } from "firebase/firestore";
+import { enableMultiTabIndexedDbPersistence, getDocs, getFirestore } from "firebase/firestore";
 import { doc, collection, getDoc, addDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore"; 
 import { GenreRatings, Interests, Author, User } from "./user";
 
@@ -71,10 +71,12 @@ export async function matchUserWithWriter(userID: string) {
 
     let authorCounter = 1
     const writerQuery = await getDocs(collection(db, "writers"));
+    const writers: any = []
     writerQuery.forEach((doc) => {
         let author = doc.data() as Author
 
         prompt += `\n\nAuthor ${authorCounter}:`
+        writers[authorCounter] = { name: author.name, id: doc.id }
         authorCounter += 1
 
         for (const genre in author.genres) {
@@ -91,7 +93,19 @@ export async function matchUserWithWriter(userID: string) {
 
     prompt += `\n\nWith all of the information about the user and the possible authors, who matches the best with the user? Please respond using ONLY a single number representing the best author.`
 
-    console.log(prompt);
+    const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: [{ role: "user", content: prompt }] }),
+    });
 
-    return "hello";
+    const data = await res.json();
+    const assistantReply = data.content?.[0]?.text || "OUT OF API CALLS";
+
+    console.log(prompt)
+    console.log(assistantReply)
+
+    const matchedAuthor = writers[parseInt(assistantReply)]
+
+    return matchedAuthor;
 }
