@@ -13,8 +13,10 @@ import MatchInProgress from "./matchingInProgress";
 import { useSession } from "next-auth/react";
 import CustomInput from "./customInput";
 import MatchComplete from "./matchComplete";
+import Welcome from "./welcome";
 
 type Page =
+  | "Welcome"
   | "Genres"
   | "Writing Rating 1"
   | "Writing Rating 2"
@@ -76,78 +78,41 @@ export default function Onboarding() {
     <div className="min-h-screen bg-eggshell py-12 px-4 sm:px-6 lg:px-8 text-black">
       {
         {
-          Genres: (
-            <ChooseGenres
+          "Welcome" : <Welcome nextPage={() => setPage("Genres")}/>,
+          "Genres": <ChooseGenres 
               genreRatings={genreRatings}
               setGenreRatings={setGenreRatings}
-              nextPage={() => {
-                setPage("Writing Rating 1");
-              }}
-            />
-          ),
-          "Writing Rating 1": (
-            <WritingReviewOne
+              previousPage={() => {setPage("Welcome")}}
+              nextPage={() => {setPage("Writing Rating 1")}}/>,
+          "Writing Rating 1" : <WritingReviewOne 
               writingScore={writingOneScore}
               setWritingScore={setWritingOneScore}
-              previousPage={() => {
-                setPage("Genres");
-              }}
-              nextPage={() => {
-                setPage("Writing Rating 2");
-              }}
-            />
-          ),
-          "Writing Rating 2": (
-            <WritingReviewTwo
+              previousPage={() => {setPage("Genres")}}
+              nextPage={() => {setPage("Writing Rating 2")}}/>,
+          "Writing Rating 2" : <WritingReviewTwo 
               writingScore={writingTwoScore}
               setWritingScore={setWritingTwoScore}
-              previousPage={() => {
-                setPage("Writing Rating 1");
-              }}
-              nextPage={() => {
-                setPage("Writing Rating 3");
-              }}
-            />
-          ),
-          "Writing Rating 3": (
-            <WritingReviewThree
+              previousPage={() => {setPage("Writing Rating 1")}}
+              nextPage={() => {setPage("Writing Rating 3")}}/>,
+          "Writing Rating 3" : <WritingReviewThree 
               writingScore={writingThreeScore}
               setWritingScore={setWritingThreeScore}
-              previousPage={() => {
-                setPage("Writing Rating 2");
-              }}
-              nextPage={() => {
-                setPage("Writing Rating 4");
-              }}
-            />
-          ),
-          "Writing Rating 4": (
-            <WritingReviewFour
+              previousPage={() => {setPage("Writing Rating 2")}}
+              nextPage={() => {setPage("Writing Rating 4")}}/>,
+          "Writing Rating 4" : <WritingReviewFour 
               writingScore={writingFourScore}
               setWritingScore={setWritingFourScore}
-              previousPage={() => {
-                setPage("Writing Rating 3");
-              }}
-              nextPage={() => {
-                setPage("Custom Input");
-              }}
-            />
-          ),
-          "Custom Input": (
-            <CustomInput
+              previousPage={() => {setPage("Writing Rating 3")}}
+              nextPage={() => {setPage("Custom Input")}}/>,
+          "Custom Input" : <CustomInput 
               customInput={customInput}
               setCustomInput={setCustomInput}
               previousPage={() => setPage("Writing Rating 4")}
-              nextPage={() => {
-                setPage("Match In Progress");
-                beginMatch();
-              }}
-            />
-          ),
-          "Match In Progress": <MatchInProgress />,
-          Matched: <MatchComplete match={match} />,
+              nextPage={() => {setPage("Match In Progress") ; beginMatch()}}/>,
+          "Match In Progress" : <MatchInProgress />,
+          "Matched" : <MatchComplete match={match}/>,
         }[page]
       }
     </div>
-  );
+  )
 }

@@ -22,12 +22,15 @@ export interface Book {
 export interface BookChapter {
     content: string
     title: string
-    author: Author
+    authorName: string
+    authorID: string
 }
 
 export interface Author {
     id: string
     name: string
+    genreSelection: GenreSelection
+    writingSamples: string[]
 }
 
 export interface GenreRatings {
@@ -43,4 +46,19 @@ export interface GenreRatings {
     historical: number
     thriller: number
     children: number
+}
+
+export interface GenreSelection {
+    scifi: boolean
+    fantasy: boolean
+    dystopia: boolean
+    mystery: boolean
+    horror: boolean
+    action: boolean
+    adventure: boolean
+    teen: boolean
+    romance: boolean
+    historical: boolean
+    thriller: boolean
+    children: boolean
 }

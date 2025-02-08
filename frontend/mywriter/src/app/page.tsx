@@ -3,6 +3,7 @@
 import Image from "next/image";
 import LoginButtonRow from "./Components/LoginButtonRow";
 import logo from "@/app/logo.svg";
+import Link from "next/link";
 require("dotenv").config();
 
 export default function Home() {
@@ -15,6 +16,19 @@ export default function Home() {
           Personalized Storytelling From Your Favorite Authors
         </p>
         <LoginButtonRow />
+      </div>
+      <div className="py-1 flex justify-center items-center gap-5">
+        <div className="">
+          Are you a Writer?
+        </div>
+        <div className="flex justify-center space-x-4">
+          <Link
+            href="writers/onboarding"
+            className="bg-battleship text-eggshell px-4 py-2 rounded-lg hover:bg-eggshell hover:text-battleship border-2 border-battleship"
+          >
+            Go to Writer Dashboard
+          </Link>
+        </div>
       </div>
     </main>
   );

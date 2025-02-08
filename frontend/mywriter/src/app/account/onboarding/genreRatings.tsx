@@ -1,97 +1,46 @@
 import { GenreRatings } from "@/lib/user";
 import { Dispatch, SetStateAction, useState } from "react";
 
-export default function ChooseGenres(props: {
-  genreRatings: GenreRatings;
-  setGenreRatings: Dispatch<SetStateAction<GenreRatings>>;
-  nextPage: () => void;
-}) {
-  return (
-    <div className="min-h-screen bg-eggshell py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-bold text-slate-900 text-center mb-8">
-          Find Your Perfect Author
-        </h1>
+export default function ChooseGenres(props: {genreRatings: GenreRatings, setGenreRatings: Dispatch<SetStateAction<GenreRatings>>, previousPage: () => void, nextPage: () => void}) {
+    return (
+        <div className="min-h-screen bg-eggshell py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto">
+                <h1 className="text-4xl font-bold text-slate-900 text-center mb-8">
+                    Find Your Perfect Author
+                </h1>
+                
+                <div className="bg-white rounded-2xl shadow-lg p-8 space-y-8">
+                    <p className="text-xl text-slate-700 text-center mb-8">
+                        Rate the following genres to help us match you with authors you'll love
+                    </p>
+                    
+                    <div className="space-y-8">
+                        <GenreSlider genre="scifi" value={props.genreRatings} setValue={props.setGenreRatings} />
+                        <GenreSlider genre="fantasy" value={props.genreRatings} setValue={props.setGenreRatings} />
+                        <GenreSlider genre="dystopia" value={props.genreRatings} setValue={props.setGenreRatings} />
+                        <GenreSlider genre="mystery" value={props.genreRatings} setValue={props.setGenreRatings} />
+                        <GenreSlider genre="horror" value={props.genreRatings} setValue={props.setGenreRatings} />
+                        <GenreSlider genre="action" value={props.genreRatings} setValue={props.setGenreRatings} />
+                        <GenreSlider genre="adventure" value={props.genreRatings} setValue={props.setGenreRatings} />
+                        <GenreSlider genre="teen" value={props.genreRatings} setValue={props.setGenreRatings} />
+                        <GenreSlider genre="romance" value={props.genreRatings} setValue={props.setGenreRatings} />
+                        <GenreSlider genre="historical" value={props.genreRatings} setValue={props.setGenreRatings} />
+                        <GenreSlider genre="thriller" value={props.genreRatings} setValue={props.setGenreRatings} />
+                        <GenreSlider genre="children" value={props.genreRatings} setValue={props.setGenreRatings} />
+                    </div>
 
-        <div className="bg-white rounded-2xl shadow-lg p-8 space-y-8">
-          <p className="text-xl text-slate-700 text-center mb-8">
-            Rate the following genres to help us match you with authors you'll
-            love
-          </p>
-
-          <div className="space-y-8">
-            <GenreSlider
-              genre="sci-fi"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-            <GenreSlider
-              genre="fantasy"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-            <GenreSlider
-              genre="dystopia"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-            <GenreSlider
-              genre="mystery"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-            <GenreSlider
-              genre="horror"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-            <GenreSlider
-              genre="action"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-            <GenreSlider
-              genre="adventure"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-            <GenreSlider
-              genre="teen"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-            <GenreSlider
-              genre="romance"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-            <GenreSlider
-              genre="historical"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-            <GenreSlider
-              genre="thriller"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-            <GenreSlider
-              genre="children"
-              value={props.genreRatings}
-              setValue={props.setGenreRatings}
-            />
-          </div>
-
-          <button
-            onClick={props.nextPage}
-            className="w-full bg-battleship hover:bg-eggshell hover:text-black text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
-          >
-            Next Step
-          </button>
+                    <div className="flex gap-5">
+                        <button onClick={props.previousPage} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                            Previous Step
+                        </button>
+                        <button onClick={props.nextPage} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                            Next Step
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    )
 }
 
 function GenreSlider(props: {
