@@ -2,7 +2,7 @@ import LoadingBar from "@/app/Components/LoadingBar"
 
 export default function MatchInProgress() {
     return (
-        <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-eggshell py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
                 <h1 className="text-4xl font-bold text-slate-900 text-center mb-8">
                     Complete your Profile
