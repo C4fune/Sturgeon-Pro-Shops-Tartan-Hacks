@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getFirestore } from "firebase/firestore";
 import { doc, collection, getDoc, addDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore"; 
-import { GenreRatings } from "./user";
+import { GenreRatings, Interests } from "./user";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -22,14 +22,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function register(userID: string, username: string, genreData: GenreRatings) {
-    console.log(username)
+export async function register(userID: string, username: string) {
     await setDoc(doc(db, 'users', userID), {
         username: username,
-        interests: {
-            genres: genreData
-        },
         books: [],
+    })
+}
+
+export async function addOnboardingData(userID: string, interests: Interests) {
+    await updateDoc(doc(db, 'users', userID), {
+        interests: interests
     })
 }
 
