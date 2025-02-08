@@ -94,5 +94,4 @@ export async function deleteRequest(authorID: string, queueID: string) {
     await updateDoc(doc(db, 'writers', authorID), {
         queue: arrayRemove(elementToRemove)
     });
-
 }

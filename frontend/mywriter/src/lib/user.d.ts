@@ -18,6 +18,7 @@ export interface Interests {
 export interface Book {
     body: string
     title: string
+    id: UUID
 }
 
 export interface BookChapter {
