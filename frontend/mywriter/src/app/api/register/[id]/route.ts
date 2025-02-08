@@ -18,8 +18,10 @@ export async function PUT(request: Request, { params }: {params: { id: string }}
         children: 10,
     }
 
+    const req = await request.json()
+
     if (await getUserData(params.id) == undefined) {
-        register(params.id, genreRatings)
+        register(params.id, req.username, genreRatings)
     }
 
     return Response.json({success: true})

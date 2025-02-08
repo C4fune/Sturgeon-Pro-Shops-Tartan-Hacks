@@ -4,7 +4,7 @@ import { SessionProvider } from "next-auth/react"
 import { useSession } from "next-auth/react"
 import type { User } from "../../lib/user"
 
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Account() {
   const [userData, setUserData] = useState<User | null>(null)

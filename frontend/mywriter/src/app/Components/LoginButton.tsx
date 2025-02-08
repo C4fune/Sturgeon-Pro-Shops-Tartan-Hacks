@@ -6,6 +6,9 @@ export default function LoginButton() {
   if (session != null) {
     fetch("api/register/" + session.user?.email, {
       method: "PUT",
+      body: JSON.stringify({
+        username: session.user?.name
+      })
     })
   }
 
