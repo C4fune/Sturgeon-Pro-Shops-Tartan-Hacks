@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { mintAndRegisterOutline } from "@/app/story-utils/mintAndRegisterOutline";
+import { registerDerivativeCommercialExpandedOutline } from "@/app/story-utils/registerDerivativeCommercialExpandedOutline";
 
 export default function MyWriterPage() {
   const router = useRouter();
@@ -17,17 +19,6 @@ export default function MyWriterPage() {
 
   async function handleSend() {
     if (!input) return;
-<<<<<<< Updated upstream
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: [{ role: "user", content: input }] }),
-    });
-    const data = await res.json();
-    const assistantReply = data.choices?.[0]?.message?.content || "";
-    setHistory([...history, { user: input, assistant: assistantReply }]);
-    setInput("");
-=======
 
     const IPresponse = await mintAndRegisterOutline(input) // intellectual property this text
     try {
@@ -69,7 +60,6 @@ export default function MyWriterPage() {
       ]);
       setInput("");
     }
->>>>>>> Stashed changes
   }
 
   return (

@@ -1,14 +1,8 @@
-import OpenAI from 'openai';
-<<<<<<< Updated upstream
+
 import { IpMetadata } from '@story-protocol/core-sdk'
 import { SPGNFTContractAddress, client } from '../../../story-utils/utils'
 import { uploadJSONToIPFS } from '../../../story-utils/uploadToIpfs'
 import { createHash } from 'crypto'
-
-const OpenAIclient = new OpenAI({
-    apiKey: process.env['OPENAI_API_KEY'], // Ensure this is correctly set
-});
-
 /* Original ideas for stories
  * Pipeline: start with the user idea
  * send it to the author
@@ -23,30 +17,6 @@ const OpenAIclient = new OpenAI({
 ✅ Distribute their remix anywhere
  */
 
-async function mintAndRegisterOutline() {
-
-}
-
-<<<<<<< Updated upstream
-async function registerDerivativeCommercialOutlineExpanded() {
-=======
-export async function openaiRequest(messages: any) {
-  try {
-    // Call OpenAI
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages,
-      }),
-    });
->>>>>>> Stashed changes
-
-}
 
 async function mintAndRegisterIdea(responseData : Response) {
     // ????? Is the user a string?
@@ -138,7 +108,7 @@ export async function POST(req : Request) {
         return new Response(JSON.stringify({ error: error.message }), { status: 500 });
     }
 }
-=======
+
 
 const client = new OpenAI({
     apiKey: process.env['OPENAI_API_KEY'], // Ensure this is correctly set
@@ -185,4 +155,49 @@ export async function POST(req : Request) {
         return new Response(JSON.stringify({ error: error.message }), { status: 500 });
     }
 }
->>>>>>> Stashed changes
+
+const client = new OpenAI({
+    apiKey: process.env['OPENAI_API_KEY'], // Ensure this is correctly set
+});
+
+async function protectIP(responseData : Response) {
+    responseData.json()
+
+}
+
+
+export async function POST(req : Request) {
+    try {
+        // Parse the incoming request body
+        const body = await req.json();
+        const { messages } = body; // Assuming 'messages' is an array in the body
+
+        // Log to verify the incoming messages
+        console.log("Received messages:", messages);
+
+        // Make sure 'messages' is provided, otherwise return an error
+        if (!messages || !Array.isArray(messages)) {
+            console.error("Invalid messages format:", messages);
+            return new Response('Messages not provided or invalid', { status: 400 });
+        }
+
+        // Request completion from OpenAI API
+        const chatCompletion = await client.chat.completions.create({
+            model: 'gpt-3.5-turbo', // Make sure the model version is correct
+            messages: messages, // Use the messages passed in the request body
+        });
+
+        // Log the response from OpenAI API
+        console.log("OpenAI response:", chatCompletion);
+
+        // Return the response from OpenAI API
+        return new Response(JSON.stringify(chatCompletion), { status: 200 });
+    } catch (error) {
+        // Log the error message to help diagnose the issue
+        console.error("Error occurred:", error.message);
+        console.error(error.stack); // Log the full stack trace for debugging
+
+        // Return error message with 500 status code
+        return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    }
+}
