@@ -8,13 +8,13 @@ Given a Request object that contains a writer's outline,
 Writer's outline should also include the original reader idea.
 Make the outline a Minted and Registered NFT.
 */
-export async function mintAndRegisterOutline(responseData: Response) {
-  const chatResponseData = await responseData.json();
+export async function mintAndRegisterOutline(inputData : string) {
   // 1. Set up your IP Metadata
   //
   // Docs: https://docs.story.foundation/docs/ipa-metadata-standard
   const ipMetadata: IpMetadata = client.ipAsset.generateIpMetadata({
-    title: chatResponseData.id,
+    
+    title: "Author outline of user story",
     description: "User-provided plot, characters, or world-building details, outlined by an author",
     attributes: [
       {
@@ -30,7 +30,7 @@ export async function mintAndRegisterOutline(responseData: Response) {
   const nftMetadata = {
     name: "Storyline NFT",
     description: "This NFT represents ownership of a storyboard outline",
-    text: chatResponseData.choices[0].message.content,
+    text: inputData,
   };
 
   // 3. Upload your IP and NFT Metadata to IPFS
@@ -67,6 +67,6 @@ export async function mintAndRegisterOutline(responseData: Response) {
   console.log(
     `View on the explorer: https://explorer.story.foundation/ipa/${response.ipId}`
   );
-  console.log(typeof response);
+//   console.log(typeof response);
   return response;
 }
