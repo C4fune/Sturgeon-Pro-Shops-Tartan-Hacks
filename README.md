@@ -1,7 +1,6 @@
 # Project Name
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://img.shields.io/travis/yourusername/projectname.svg)](https://travis-ci.com/yourusername/projectname)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ## Table of Contents
