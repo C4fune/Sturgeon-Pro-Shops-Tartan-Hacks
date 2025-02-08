@@ -49,18 +49,18 @@ export default function Onboarding() {
         children: 5,
     });
 
-    async function beginMatch() {
+    async function submitWriter() {
         await fetch("/api/writers/" + session?.user?.email + "/onboardingComplete", {
             method: "PUT",
             body: JSON.stringify({
                 name: session?.user?.name,
                 genres: genreRatings,
                 samples: samples,
-                customInput: customInput,
+                style: customInput,
             })
         })
 
-        await delay(5000);
+        await delay(1000);
 
         setPage("Matched")
     }
@@ -85,7 +85,7 @@ export default function Onboarding() {
                         customInput={customInput}
                         setCustomInput={setCustomInput}
                         previousPage={() => setPage("Writing Sample")}
-                        nextPage={() => { setPage("Match In Progress") ; beginMatch() }} />,
+                        nextPage={() => { setPage("Match In Progress") ; submitWriter() }} />,
                     "Match In Progress" : <MatchInProgress />,
                     "Matched" : <MatchComplete />,
                 }[page]

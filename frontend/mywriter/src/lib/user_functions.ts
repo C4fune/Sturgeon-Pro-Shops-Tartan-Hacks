@@ -80,6 +80,7 @@ export async function matchUserWithWriter(userID: string) {
         for (const genre in author.genres) {
             prompt += `\nThis author rated the genre \"${genre}\" a ${(author.genres as any)[genre]} out of 10.`
         }
+        console.log(author)
         for (const sample of author.samples) {
             prompt += `\nHere is one sample of the author's work:\n`
             prompt += sample
@@ -89,5 +90,6 @@ export async function matchUserWithWriter(userID: string) {
         }
     });
 
-    console.log(prompt)
+    prompt += `\n\nWith all of the information about the user and the possible authors, who matches the best with the user? Please respond using ONLY a single number representing the best author.`
+
 }

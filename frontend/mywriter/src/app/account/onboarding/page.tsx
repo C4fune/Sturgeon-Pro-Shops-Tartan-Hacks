@@ -69,7 +69,9 @@ export default function Onboarding() {
       }),
     });
 
-    await delay(5000);
+    await fetch("/api/user/" + session?.user?.email + "/match")
+
+    await delay(2000);
 
     setPage("Matched");
   }
