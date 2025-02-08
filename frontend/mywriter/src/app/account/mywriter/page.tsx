@@ -23,7 +23,7 @@ export default function MyWriterPage() {
       body: JSON.stringify({ messages: [{ role: "user", content: input }] }),
     });
     const data = await res.json();
-    const assistantReply = data.choices?.[0]?.message?.content || "GPT IS BROKEN";
+    const assistantReply = data.choices?.[0]?.message?.content || "OUT OF API CALLS";
     setHistory([...history, { user: input, assistant: assistantReply }]);
     setInput("");
   }
