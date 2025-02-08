@@ -7,12 +7,17 @@ import { WritingReviewOne, WritingReviewTwo, WritingReviewThree, WritingReviewFo
 import MatchInProgress from "./matchingInProgress";
 import { useSession } from "next-auth/react";
 import CustomInput from "./customInput";
+import MatchComplete from "./matchComplete";
 
 type Page = "Genres" | "Writing Rating 1" | "Writing Rating 2" | "Writing Rating 3" | "Writing Rating 4" | "Custom Input" | "Match In Progress" | "Matched"
+
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 export default function Onboarding() {
     const {data: session} = useSession();
     const [page, setPage] = useState<Page>("Genres")
+
+    const [match, setMatch] = useState<string>("Andrew Carnegie")
 
     const [writingOneScore, setWritingOneScore] = useState<number>(5)
     const [writingTwoScore, setWritingTwoScore] = useState<number>(5)
@@ -36,18 +41,22 @@ export default function Onboarding() {
         children: 5,
     });
 
-    function beginMatch() {
-        fetch("/api/user/" + session?.user?.email + "/onboardingComplete", {
+    async function beginMatch() {
+        await fetch("/api/user/" + session?.user?.email + "/onboardingComplete", {
             method: "PUT",
             body: JSON.stringify({
-              genres: genreRatings,
-              writingOneScore: writingOneScore,
-              writingTwoScore: writingTwoScore,
-              writingThreeScore: writingThreeScore,
-              writingFourScore: writingFourScore,
-              custom: customInput
+            genres: genreRatings,
+            writingOneScore: writingOneScore,
+            writingTwoScore: writingTwoScore,
+            writingThreeScore: writingThreeScore,
+            writingFourScore: writingFourScore,
+            custom: customInput
             })
-          })
+        })
+
+        await delay(5000);
+
+        setPage("Matched")
     }
 
     return (
@@ -84,7 +93,7 @@ export default function Onboarding() {
                         previousPage={() => setPage("Writing Rating 4")}
                         nextPage={() => {setPage("Match In Progress") ; beginMatch()}}/>,
                     "Match In Progress" : <MatchInProgress />,
-                    "Matched" : <MatchInProgress />,
+                    "Matched" : <MatchComplete match={match}/>,
                 }[page]
             }
         </div>

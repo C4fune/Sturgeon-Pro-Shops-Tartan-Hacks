@@ -1,23 +1,22 @@
 import LoadingBar from "@/app/Components/LoadingBar"
+import Link from "next/link"
 
-export default function MatchInProgress() {
+export default function MatchInProgress(props: {match: string}) {
     return (
         <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
                 <h1 className="text-4xl font-bold text-slate-900 text-center mb-8">
-                    Find Your Perfect Author
+                    You've been matched with an Author!
                 </h1>
                 
                 <div className="bg-white rounded-2xl shadow-lg p-8 space-y-8">
                     <p className="text-xl text-slate-700 text-center mb-8">
-                        Your match is on the way...
+                        Your matched author is: {props.match}
                     </p>
 
-                    <LoadingBar />
-
                     <div className="flex gap-5">
-                        <button disabled className="w-full bg-indigo-300 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
-                            Please wait...
+                        <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                            <Link href="/account/bookshelf">Go to My Bookshelf</Link>
                         </button>
                     </div>
                 </div>
