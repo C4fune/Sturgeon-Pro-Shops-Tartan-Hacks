@@ -4,9 +4,12 @@ import Image from "next/image";
 import LoginButtonRow from "./Components/LoginButtonRow";
 import logo from "@/app/logo.svg";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 require("dotenv").config();
 
 export default function Home() {
+  const { data: session } = useSession();
+
   return (
     <main className="flex flex-col min-h-screen bg-eggshell">
       <div className="flex flex-col justify-center items-center flex-1">
@@ -19,6 +22,7 @@ export default function Home() {
           <LoginButtonRow />
         </div>
       </div>
+      { session != null ? (
       <div className="py-1 flex justify-center items-center gap-5">
         <div className="">
           Are you a Writer?
@@ -31,7 +35,7 @@ export default function Home() {
             Go to Writer Dashboard
           </Link>
         </div>
-      </div>
+      </div>) : null }
     </main>
   );
 }
