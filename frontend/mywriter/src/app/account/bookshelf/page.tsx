@@ -18,24 +18,24 @@ export default function BookshelfPage() {
   }
 
   return (
-    <main className="min-h-screen p-8 sm:p-20 font-sans bg-eggshell">
+    <main className="min-h-screen p-8 sm:p-20 font-robotoMono bg-eggshell">
       <h1 className="text-3xl mb-8">My BookShelf</h1>
       <div className="grid grid-cols-24 grid-rows-2 gap-4">
         {books.map((book, i) => (
           <div
             key={i}
-            className="border border-battleship bg-battleship shadow-sm flex items-center justify-center text-center h-40"
+            className="border border-battleship border-4 bg-battleship shadow-sm flex items-center justify-center text-center h-40 hover:bg-eggshell" onClick={handlePlusClick}
           >
-            <p className="rotate-90">{book.title}</p>
+            <div className="text-4xl text-black">{book.title} </div>
           </div>
         ))}
         <div
           className="border border-battleship bg-white shadow-sm flex items-center justify-center text-center h-40 cursor-pointer hover:bg-accept"
           onClick={handlePlusClick}
         >
-          <p className="text-4xl font-bold">+</p>
+          <p className="text-6xl font-bold">+</p>
         </div>
-        {Array.from({ length: 48 - (books.length + 1) }, (_, i) => (
+        {Array.from({ length: 1}, (_, i) => (
           <div
             key={`filler_${i}`}
             className="border border-battleship bg-gray-50 h-40"

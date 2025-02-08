@@ -17,7 +17,7 @@ export default function LoginButton() {
     return (
     <div>
         {/* Signed in as {session.user.email} <br /> */}
-                <Link
+        <Link
         href="account/bookshelf/"
         className="bg-battleship text-eggshell px-4 py-2 rounded-lg hover:bg-eggshell hover:text-battleship border-2 border-battleship"
         >
