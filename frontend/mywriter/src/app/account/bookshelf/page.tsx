@@ -13,6 +13,9 @@ export default function BookshelfPage() {
   function handlePlusClick() {
     router.push("/account/mywriter");
   }
+  function handleNewStory() {
+    router.push("/account/request");
+  }
   function returnToHome() {
     router.push("/");
   }
@@ -43,29 +46,45 @@ export default function BookshelfPage() {
       <div className="flex flex-col gap-4 mb-4">
         <h1 className="text-3xl font-bold">My BookShelf</h1>
         <div className="flex gap-4">
-          <button className="bg-black rounded hover:bg-eggshell hover:text-black border-transparent hover:border-battleship border-2 text-white px-3 py-1" onClick={returnToHome}>
+          <button
+            className="bg-black rounded hover:bg-eggshell hover:text-black border-transparent hover:border-battleship border-2 text-white px-3 py-1"
+            onClick={returnToHome}
+          >
             Return to Home
           </button>
-          <button className="bg-black rounded hover:bg-eggshell hover:text-black border-transparent hover:border-battleship border-2 text-white px-3 py-1" onClick={goToLetterbox}>
+          <button
+            className="bg-black rounded hover:bg-eggshell hover:text-black border-transparent hover:border-battleship border-2 text-white px-3 py-1"
+            onClick={goToLetterbox}
+          >
             View Letterbox
           </button>
         </div>
       </div>
       <div className="grid grid-cols-24 grid-rows-2 gap-4">
         <div className="flex gap-4">
-          <div className="rounded-md hover:bg-white shadow-sm flex-1 flex items-center justify-center text-center h-40 cursor-pointer bg-accept" onClick={handlePlusClick}>
+          <div
+            className="rounded-md hover:bg-white shadow-sm flex-1 flex items-center justify-center text-center h-40 cursor-pointer bg-accept"
+            onClick={handleNewStory}
+          >
             <p className="lg:text-4xl md:text-3xl text-xl font-bold">
-              Write a new book
+              Request a new story
             </p>
           </div>
-          <div className="rounded-md hover:bg-white shadow-sm flex-1 flex items-center justify-center text-center h-40 cursor-pointer bg-accept" onClick={handlePlusClick}>
+          <div
+            className="rounded-md hover:bg-white shadow-sm flex-1 flex items-center justify-center text-center h-40 cursor-pointer bg-accept"
+            onClick={handlePlusClick}
+          >
             <p className="lg:text-4xl md:text-3xl text-xl font-bold">
               Upload a book
             </p>
           </div>
         </div>
         {books.map((book, i) => (
-          <div key={i} className="border-battleship rounded-md border-4 bg-battleship shadow-sm flex items-center justify-center text-center h-40 hover:bg-eggshell" onClick={handlePlusClick}>
+          <div
+            key={i}
+            className="border-battleship rounded-md border-4 bg-battleship shadow-sm flex items-center justify-center text-center h-40 hover:bg-eggshell"
+            onClick={handlePlusClick}
+          >
             <div className="text-4xl text-black">{book.title}</div>
           </div>
         ))}
@@ -73,4 +92,3 @@ export default function BookshelfPage() {
     </main>
   );
 }
-
