@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import { redirect, useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
+import { User } from "../../../lib/user"
 
 interface Book {
   title: string
@@ -20,7 +21,7 @@ export default function BookshelfPage() {
   useEffect(() => {
     if (!session) { return }
     async function fetchData() {
-      let res = await fetch('api/user/' + session?.user?.email)
+      let res = await fetch('/api/user/' + session?.user?.email)
       let data = await res.json()
       setUserData(data)
     }
@@ -31,7 +32,9 @@ export default function BookshelfPage() {
     router.push("/account/mywriter")
   }
 
-  if (!userData.onboarding) { redirect("account/onboarding") }
+  if (!userData) { return (<p>loading...</p>) }
+
+  if (!userData.onboarding) { redirect("/account/onboarding") }
 
   return (
     <main className="min-h-screen p-8 sm:p-20 font-sans">

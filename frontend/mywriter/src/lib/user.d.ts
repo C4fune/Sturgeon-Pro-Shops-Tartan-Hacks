@@ -3,7 +3,6 @@ export interface User {
     books: Book[]
     interests: Interests
     onboarding: boolean
-
 }
 
 export interface Interests {
