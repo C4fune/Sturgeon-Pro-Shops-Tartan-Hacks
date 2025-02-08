@@ -1,4 +1,3 @@
-// app/account/mywriter/page.tsx
 "use client";
 
 import { useState } from "react";
