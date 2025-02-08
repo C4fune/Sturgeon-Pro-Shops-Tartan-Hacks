@@ -16,7 +16,7 @@ export default function Welcome(props: {nextPage: () => void}) {
                     </p>
 
                     <div className="flex gap-5">
-                        <button onClick={props.nextPage} className="w-full bg-battleship hover:bg-black text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        <button onClick={props.nextPage} className="w-full bg-battleship hover:bg-eggshell text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
                             Get Started
                         </button>
                     </div>

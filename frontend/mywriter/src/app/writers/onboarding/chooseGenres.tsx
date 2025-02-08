@@ -30,10 +30,10 @@ export default function ChooseGenres(props: {genreSelection: GenreSelection, set
                     </div>
 
                     <div className="flex gap-5">
-                        <button onClick={props.previousPage} className="w-full bg-battleship hover:bg-black text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        <button onClick={props.previousPage} className="w-full bg-battleship hover:bg-eggshell text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
                             Previous Step
                         </button>
-                        <button onClick={props.nextPage} className="w-full bg-battleship hover:bg-black text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        <button onClick={props.nextPage} className="w-full bg-battleship hover:bg-eggshell text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
                             Next Step
                         </button>
                     </div>
@@ -44,7 +44,6 @@ export default function ChooseGenres(props: {genreSelection: GenreSelection, set
 }
 
 function GenreSelector(props: {genre: string, value: any, setValue: Dispatch<SetStateAction<GenreSelection>>}) {
-    console.log(props.value)
     return (
         <div className="space-y-2">
             <div className="flex justify-between items-center">

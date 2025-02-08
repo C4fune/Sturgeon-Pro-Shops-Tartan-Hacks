@@ -30,7 +30,7 @@ const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 export default function Onboarding() {
   const { data: session } = useSession();
-  const [page, setPage] = useState<Page>("Genres");
+  const [page, setPage] = useState<Page>("Welcome");
 
   const [match, setMatch] = useState<string>("Andrew Carnegie");
 

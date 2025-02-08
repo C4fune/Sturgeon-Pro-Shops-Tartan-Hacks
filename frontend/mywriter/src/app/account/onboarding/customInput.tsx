@@ -14,7 +14,7 @@ export default function CustomInput(props: {
           Find Your Perfect Author
         </h1>
 
-        <div className="bg-eggshell rounded-2xl shadow-lg p-8 space-y-8">
+        <div className="bg-white rounded-2xl shadow-lg p-8 space-y-8">
           <p className="text-xl text-slate-700 text-center mb-8">
             Tell us anything else about your preferences
           </p>

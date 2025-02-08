@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getFirestore } from "firebase/firestore";
 import { doc, collection, getDoc, addDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore"; 
-import { GenreRatings, Interests } from "./user";
+import { GenreRatings, Interests, Author } from "./user";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -38,4 +38,8 @@ export async function addOnboardingData(userID: string, interests: Interests) {
 
 export async function getUserData(username: string) {
     return (await getDoc(doc(db, 'users', username))).data()
+}
+
+export async function addWriterOnboardingData(writerID: string, writerData: Author) {
+    await setDoc(doc(db, 'writers', writerID), writerData)
 }

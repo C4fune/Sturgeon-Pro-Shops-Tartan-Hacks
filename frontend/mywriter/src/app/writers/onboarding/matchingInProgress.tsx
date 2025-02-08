@@ -16,7 +16,7 @@ export default function MatchInProgress() {
                     <LoadingBar />
 
                     <div className="flex gap-5">
-                        <button disabled className="w-full bg-indigo-300 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        <button disabled className="w-full bg-battleship text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
                             Please wait...
                         </button>
                     </div>
