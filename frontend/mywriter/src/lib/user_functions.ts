@@ -22,8 +22,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function register(username: string, genreData: GenreRatings) {
-    await setDoc(doc(db, 'users', username), {
+export async function register(userID: string, username: string, genreData: GenreRatings) {
+    console.log(username)
+    await setDoc(doc(db, 'users', userID), {
         username: username,
         interests: {
             genres: genreData
