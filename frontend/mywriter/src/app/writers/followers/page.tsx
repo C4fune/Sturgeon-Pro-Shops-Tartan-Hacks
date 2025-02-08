@@ -49,7 +49,7 @@ export default function WriterFollowers() {
     <main className="min-h-screen p-8 sm:p-20 font-robotoMono bg-eggshell">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Followers</h1>
-        <Link href="/writer/dashboard">
+        <Link href="/writers/dashboard">
           <button className="bg-black rounded hover:bg-eggshell hover:text-black border-transparent hover:border-battleship border-2 text-white px-3 py-1">
             Back to Dashboard
           </button>

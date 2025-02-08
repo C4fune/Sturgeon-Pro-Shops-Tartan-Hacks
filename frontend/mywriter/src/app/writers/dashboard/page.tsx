@@ -57,7 +57,7 @@ export default function WriterDashboard() {
     <main className="min-h-screen p-8 sm:p-20 font-robotoMono bg-eggshell">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Writer Dashboard</h1>
-        <Link href="/writer/followers">
+        <Link href="/writers/followers">
           <button className="bg-black rounded hover:bg-eggshell hover:text-black border-transparent hover:border-battleship border-2 text-white px-3 py-1">
             View Followers
           </button>
