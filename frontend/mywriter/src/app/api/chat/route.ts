@@ -13,6 +13,12 @@ export async function POST(req: Request) {
       })
     })
     const data = await response.json()
+
+    /*
+    In the middle, we're going to tag the intellectual property
+    using story. 
+    
+    */
     return new Response(JSON.stringify(data))
   }
   
