@@ -29,7 +29,7 @@ export async function GET(request: Request, { params }: {params: { id: string }}
         let author = doc.doc as Author
 
         prompt += `\n\nAuthor ${authorCounter}:`
-        writers[authorCounter] = { name: author.name, id: doc.id }
+        writers[authorCounter] = { ...author, id: doc.id }
         authorCounter += 1
 
         for (const genre in author.genres) {
@@ -56,6 +56,7 @@ export async function GET(request: Request, { params }: {params: { id: string }}
     const matchedAuthor = writers[parseInt(assistantReply)]
 
     updateMatchedAuthor(params.id, matchedAuthor.id)
+    
 
     return Response.json(matchedAuthor)
 }

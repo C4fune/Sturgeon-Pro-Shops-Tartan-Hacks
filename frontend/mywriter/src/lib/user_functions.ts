@@ -56,6 +56,7 @@ export async function getAllWriters() {
 
 export async function updateMatchedAuthor(userID: string, writerID: string) {
     await updateDoc(doc(db, 'users', userID), {
-        matchedAuthor: writerID
+        matchedAuthor: writerID,
+        followers: arrayUnion(userID)
     })
 }

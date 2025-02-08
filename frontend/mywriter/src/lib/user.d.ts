@@ -32,6 +32,7 @@ export interface Author {
     genres: GenreRatings
     samples: string[]
     style: string
+    followers: string[]
 }
 
 export interface GenreRatings {

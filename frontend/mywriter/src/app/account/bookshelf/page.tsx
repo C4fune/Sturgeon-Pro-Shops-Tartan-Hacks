@@ -6,10 +6,8 @@ import { User, Book } from "../../../lib/user";
 import { useSession } from "next-auth/react";
 export default function BookshelfPage() {
   const router = useRouter();
-  const [books] = useState<Book[]>(() => {
-    const example = Array(5).fill({ title: "Sample Book" });
-    return example;
-  });
+  const [books, setBooks] = useState<Book[]>([]);
+
   function handlePlusClick() {
     router.push("/account/mywriter");
   }
@@ -32,6 +30,7 @@ export default function BookshelfPage() {
       const res = await fetch("/api/user/" + session?.user?.email);
       const data = await res.json();
       setUserData(data);
+      setBooks(data.books)
     }
     fetchData();
   }, [session]);
@@ -71,11 +70,14 @@ export default function BookshelfPage() {
             </p>
           </div>
           <div
-            className="rounded-md hover:bg-white shadow-sm flex-1 flex items-center justify-center text-center h-40 cursor-pointer bg-accept"
-            onClick={handlePlusClick}
+            className="rounded-md shadow-sm flex-1 flex flex-col items-center justify-center text-center h-40 cursor-pointer bg-accept"
+            // onClick={handlePlusClick}
           >
             <p className="lg:text-4xl md:text-3xl text-xl font-bold">
               Upload a book
+            </p>
+            <p className="lg:text-xl md:text-3xl text-xl font-bold">
+              (coming soon!)
             </p>
           </div>
         </div>
