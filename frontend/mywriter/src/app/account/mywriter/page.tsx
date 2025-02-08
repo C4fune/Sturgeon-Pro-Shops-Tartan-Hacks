@@ -34,6 +34,7 @@ export default function MyWriterPage() {
           { user: input, assistant: "Error: " + JSON.stringify(data.error) },
         ]);
       } else {
+        console.log(data)
         const assistantReply =
           data.choices?.[0]?.message?.content || "No response from API";
         setHistory((prev) => [
