@@ -6,6 +6,7 @@
 ## Table of Contents
 
 - [About](#about)
+- [Presentables](#presentables)
 - [Update_logs](#update_logs)
 - [Installation](#installation)
 ---
@@ -15,6 +16,19 @@
 **MyWriter** is an innovative platform that transforms the way content is crafted and consumed. Leveraging cutting-edge matching algorithms, MyWriter connects users with professional writers whose unique styles perfectly align with individual preferences. 
 
 ---
+
+## Presentables
+
+### PowerPoint Slide
+
+Link: https://docs.google.com/presentation/d/1lMtLE8DsY-DJqViKbghTCm6WyT0A7UI5MA8Kp7G8JcI/edit?usp=sharing
+
+
+### Presentation Video
+
+Link: 
+
+___
 
 ## Update_Logs
 
