@@ -1,25 +1,25 @@
-"use client"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+"use client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface Book {
-  title: string
+  title: string;
 }
 
 export default function BookshelfPage() {
-  const router = useRouter()
+  const router = useRouter();
   const [books] = useState<Book[]>(() => {
-    const example = Array(5).fill({ title: "Sample Book" })
-    return example
-  })
+    const example = Array(5).fill({ title: "Sample Book" });
+    return example;
+  });
 
   function handlePlusClick() {
-    router.push("/account/mywriter")
+    router.push("/account/mywriter");
   }
 
   return (
     <main className="min-h-screen p-8 sm:p-20 font-sans bg-eggshell">
-      <h1 className="text-3xl mb-8">My BookShelf</h1>
+      <h1 className="text-3xl mb-8 ">My BookShelf</h1>
       <div className="grid grid-cols-24 grid-rows-2 gap-4">
         {books.map((book, i) => (
           <div
@@ -43,5 +43,5 @@ export default function BookshelfPage() {
         ))}
       </div>
     </main>
-  )
+  );
 }
