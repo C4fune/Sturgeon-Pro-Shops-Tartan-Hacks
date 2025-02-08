@@ -37,10 +37,10 @@ export default function Onboarding() {
     });
 
     function beginMatch() {
-        fetch("api/user/" + session?.user?.email + "/onboardingComplete", {
+        fetch("/api/user/" + session?.user?.email + "/onboardingComplete", {
             method: "PUT",
             body: JSON.stringify({
-              genreRatings: genreRatings,
+              genres: genreRatings,
               writingOneScore: writingOneScore,
               writingTwoScore: writingTwoScore,
               writingThreeScore: writingThreeScore,
