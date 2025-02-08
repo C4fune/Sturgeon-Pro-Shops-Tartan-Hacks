@@ -29,8 +29,8 @@ export interface BookChapter {
 
 export interface Author {
     name: string
-    genreSelection: GenreSelection
-    writingSamples: string[]
+    genres: GenreRatings
+    samples: string[]
     style: string
 }
 
@@ -47,19 +47,4 @@ export interface GenreRatings {
     historical: number
     thriller: number
     children: number
-}
-
-export interface GenreSelection {
-    scifi: boolean
-    fantasy: boolean
-    dystopia: boolean
-    mystery: boolean
-    horror: boolean
-    action: boolean
-    adventure: boolean
-    teen: boolean
-    romance: boolean
-    historical: boolean
-    thriller: boolean
-    children: boolean
 }
