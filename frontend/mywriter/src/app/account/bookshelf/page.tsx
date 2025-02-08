@@ -1,6 +1,6 @@
 "use client"
-import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 interface Book {
   title: string
@@ -13,7 +13,7 @@ export default function BookshelfPage() {
     return example
   })
 
-  function goToMyWriter() {
+  function handlePlusClick() {
     router.push("/account/mywriter")
   }
 
@@ -31,7 +31,7 @@ export default function BookshelfPage() {
         ))}
         <div
           className="border border-gray-300 bg-white shadow-sm flex items-center justify-center text-center h-40 cursor-pointer hover:bg-green-50"
-          onClick={goToMyWriter}
+          onClick={handlePlusClick}
         >
           <p className="text-4xl font-bold">+</p>
         </div>
