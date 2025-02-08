@@ -135,11 +135,11 @@ export default function MyWriterPage() {
                 className="checked:bg-battleship checked:border-battleship"
               />
               <label htmlFor="videoMode" className="ml-2">
-                Video Prompts
+                Video Prompts (Future Updates!)
               </label>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              “Send your readers a visually generated story with just a few words!”
+              “Reworks on future implementations revolving around OpenAI Sora alongside a backend that stores videos.”
             </p>
           </div>
           <div className="border border-gray-300 rounded p-3 mb-3">
