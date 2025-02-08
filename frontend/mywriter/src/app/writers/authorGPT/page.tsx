@@ -20,15 +20,13 @@ export default function MyWriterPage() {
   const [darkMode, setDarkMode] = useState(false);
   const [input, setInput] = useState("");
   const { data: session } = useSession();
-  const [history, setHistory] = useState<{ user: string; assistant: string }[]>(
-    []
-  );
+  const [history, setHistory] = useState<{ user: string; assistant: string }[]>([]);
 
   // State for the queue item (if a queueId is provided)
   const [queueItem, setQueueItem] = useState<QueueItem | null>(null);
   const [loadingQueue, setLoadingQueue] = useState(!!queueId);
 
-  // If a queueId exists, fetch the corresponding queue item
+
   useEffect(() => {
     if (!queueId) return;
     async function fetchQueueItem() {
@@ -53,6 +51,8 @@ export default function MyWriterPage() {
 
   function returnToBookshelf() {
     router.push("/account/bookshelf");
+  }
+
   function returnToDashboard() {
     router.push("/writers/dashboard");
   }
@@ -67,7 +67,7 @@ export default function MyWriterPage() {
       });
       const data = await res.json();
 
-      // Check if there was an error in the API response.
+
       if (data.error) {
         console.error("API Error:", data.error);
         setHistory((prev) => [
@@ -94,9 +94,6 @@ export default function MyWriterPage() {
     }
   }
 
-  // Set the header text:
-  // If we're still loading the queue, display "Loading..."
-  // If a queue item was fetched, show its followerName; otherwise, default to "Main".
   const headerText = loadingQueue
     ? "Loading..."
     : queueItem
@@ -123,7 +120,10 @@ export default function MyWriterPage() {
               </label>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              “Creative mode” could refer to a chatbot or AI language model designed to assist and inspire creativity. Such a chatbot or AI model might provide prompts, suggest ideas, or even generate content for creative projects.
+              “Creative mode” could refer to a chatbot or AI language model
+              designed to assist and inspire creativity. Such a chatbot or AI
+              model might provide prompts, suggest ideas, or even generate
+              content for creative projects.
             </p>
           </div>
           <div className="border border-gray-300 rounded p-3 mb-3">
@@ -140,7 +140,9 @@ export default function MyWriterPage() {
               </label>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              “Balance mode” generally refers to an AI chatbot or language model designed to strike a balance between providing helpful responses and maintaining appropriate boundaries with users.
+              “Balance mode” generally refers to an AI chatbot or language model
+              designed to strike a balance between providing helpful responses
+              and maintaining appropriate boundaries with users.
             </p>
           </div>
           <div className="mb-6">
@@ -174,9 +176,10 @@ export default function MyWriterPage() {
               <h2 className="font-semibold mb-2">Examples</h2>
               <p className="text-sm mb-1">
                 <a href="#">
-                  Create me a short and funny horror story I can read before I go to bed. →
-                  Create me a short and funny horror story I can read before I
-                  go to bed. →
+                  Create me a short and funny horror story I can read before I go
+                  to bed. →
+                  Create me a short and funny horror story I can read before I go
+                  to bed. →
                 </a>
               </p>
               <p className="text-sm mb-1">
@@ -208,10 +211,12 @@ export default function MyWriterPage() {
                 May occasionally generate incorrect information.
               </p>
               <p className="text-sm mb-1">
-                May occasionally produce harmful instructions that might set you back.
+                May occasionally produce harmful instructions that might set you
+                back.
               </p>
               <p className="text-sm">
-                Overwhelming disparity of user-base preferences can lead into prompt return delay.
+                Overwhelming disparity of user-base preferences can lead into
+                prompt return delay.
               </p>
             </div>
           </div>
