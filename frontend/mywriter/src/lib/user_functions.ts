@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { enableMultiTabIndexedDbPersistence, getDocs, getFirestore } from "firebase/firestore";
 import { doc, collection, getDoc, addDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore"; 
-import { GenreRatings, Interests, Author, User } from "./user";
+import { GenreRatings, Interests, Author, User, Book } from "./user";
 import { randomUUID } from "crypto";
 
 // Your web app's Firebase configuration
@@ -75,4 +75,24 @@ export async function addStoryRequest(fromID: string, fromName: string, toID: st
 
 export async function getStoryRequests(writerID: string) {
     return (await getDoc(doc(db, 'writers', writerID))).data()?.queue ?? []
+}
+
+export async function pushBookToUser(userID: string, book: Book) {
+    await updateDoc(doc(db, 'users', userID), {
+        books: arrayUnion(book)
+    })
+}
+
+export async function deleteRequest(authorID: string, queueID: string) {
+    const docSnap = await getDoc(doc(db, 'writers', authorID));
+    
+    // Find the element to remove
+    const arrayField = (docSnap.data() ?? {})["queue"]
+
+    const elementToRemove = arrayField.find((item: { id: string; }) => item.id === queueID);
+    
+    await updateDoc(doc(db, 'writers', authorID), {
+        queue: arrayRemove(elementToRemove)
+    });
+
 }
