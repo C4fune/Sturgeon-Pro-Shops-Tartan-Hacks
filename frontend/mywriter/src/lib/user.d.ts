@@ -2,12 +2,16 @@ export interface User {
     username: string
     books: Book[]
     interests: Interests
-
+    onboarding: boolean
 }
 
 export interface Interests {
     genres: GenreRatings
     custom: string
+    writingOneScore: number
+    writingTwoScore: number
+    writingThreeScore: number
+    writingFourScore: number
 }
 
 export interface Book {

@@ -1,6 +1,8 @@
 "use client"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import { redirect, useRouter } from "next/navigation"
+import { useSession } from "next-auth/react"
+import { User } from "../../../lib/user"
 
 interface Book {
   title: string
@@ -13,9 +15,26 @@ export default function BookshelfPage() {
     return example
   })
 
+  const [userData, setUserData] = useState<User | null>(null)
+  const { data: session } = useSession()
+
+  useEffect(() => {
+    if (!session) { return }
+    async function fetchData() {
+      let res = await fetch('/api/user/' + session?.user?.email)
+      let data = await res.json()
+      setUserData(data)
+    }
+    fetchData()
+  }, [session])
+
   function goToMyWriter() {
     router.push("/account/mywriter")
   }
+
+  if (!userData) { return (<p>loading...</p>) }
+
+  if (!userData.onboarding) { redirect("/account/onboarding") }
 
   return (
     <main className="min-h-screen p-8 sm:p-20 font-sans">

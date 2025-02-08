@@ -9,9 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primaryBg: "#E3DFCC", // Example: Dark background
-        primaryText: "#0A0908", // Example: White text
-        secondaryText: "#798478", // Example: Gray text
+        primary: "#E3DFCC", // Example: Dark background
+        text: "#0A0908", // Example: White text
+        secondary: "#798478", // Example: Gray text
         accept: "#216E61", // Example: Green for success
         reject: "#E94F37", // Example: Red for errors
       },
