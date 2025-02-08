@@ -47,12 +47,11 @@ const main = async function () {
         },
         // NOTE: The below metadata is not configured properly. It is just to make things simple.
         // See `simpleMintAndRegister.ts` for a proper example.
-        ### FIX THIS ###
         ipMetadata: {
-            ipMetadataURI: 'test-uri',
-            ipMetadataHash: toHex('test-metadata-hash', { size: 32 }),
-            nftMetadataHash: toHex('test-nft-metadata-hash', { size: 32 }),
-            nftMetadataURI: 'test-nft-uri',
+            ipMetadataURI: `https://ipfs.io/ipfs/${ipIpfsHash}`,
+            ipMetadataHash: toHex(`0x${ipHash}`, { size: 32 }),
+            nftMetadataURI: `https://ipfs.io/ipfs/${nftIpfsHash}`,
+            nftMetadataHash: toHex(`0x${nftHash}`, { size: 32 }),
         },
         txOptions: { waitForTransaction: true },
     })

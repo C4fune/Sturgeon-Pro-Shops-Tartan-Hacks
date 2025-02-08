@@ -1,5 +1,5 @@
 import { LicenseTerms, StoryClient, StoryConfig, WIP_TOKEN_ADDRESS } from '@story-protocol/core-sdk'
-import { http, zeroAddress, zeroHash, toHex } from 'viem'
+import { http, zeroAddress, toHex, zeroHash } from 'viem'
 import { privateKeyToAccount, Address, Account } from 'viem/accounts'
 import dotenv from 'dotenv'
 import { LicensingConfig } from '@story-protocol/core-sdk/dist/declarations/src/types/common'
@@ -10,7 +10,7 @@ dotenv.config()
 export const RPCProviderUrl = process.env.RPC_PROVIDER_URL || 'https://aeneid.storyrpc.io'
 
 // Add your private key to your .env file.
-const privateKey: Address = `0x${process.env.WALLET_PRIVATE_KEY}`
+const privateKey: Address = toHex(`0x${process.env.WALLET_PRIVATE_KEY}`, {size: 32})
 export const account: Account = privateKeyToAccount(privateKey)
 const config: StoryConfig = {
     account: account,
@@ -21,13 +21,15 @@ export const client = StoryClient.newClient(config)
 
 // This is a pre-configured PIL Flavor: https://docs.story.foundation/docs/pil-flavors
 export const NonCommercialSocialRemixingTermsId = '1'
+export const CommercialUseTermsId = '2'
+export const CommercialRemixingTermsId = '3'
 
 // A NFT contract address that will be used to represent your IP Assets
 export const NFTContractAddress: Address = (process.env.NFT_CONTRACT_ADDRESS as Address) || '0x937bef10ba6fb941ed84b8d249abc76031429a9a'
 export const SPGNFTContractAddress: Address = process.env.NEXT_PUBLIC_SPG_NFT_CONTRACT_ADDRESS as Address
 
 // Docs: https://docs.story.foundation/docs/deployed-smart-contracts
-export const RoyaltyPolicyLAP: Address = toHex('0xBe54FB168b3c982b7AaE60dB6CF75Bd8447b390E')
+export const RoyaltyPolicyLAP: Address = '0xBe54FB168b3c982b7AaE60dB6CF75Bd8447b390E'
 
 export function createCommercialRemixTerms(terms: { commercialRevShare: number; defaultMintingFee: number }): LicenseTerms {
     return {
