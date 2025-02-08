@@ -21,6 +21,8 @@ export const client = StoryClient.newClient(config)
 
 // This is a pre-configured PIL Flavor: https://docs.story.foundation/docs/pil-flavors
 export const NonCommercialSocialRemixingTermsId = '1'
+export const CommercialUseTermsId = '2'
+export const CommercialRemixingTermsId = '3'
 
 // A NFT contract address that will be used to represent your IP Assets
 export const NFTContractAddress: Address = (process.env.NFT_CONTRACT_ADDRESS as Address) || '0x937bef10ba6fb941ed84b8d249abc76031429a9a'
