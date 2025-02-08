@@ -1,3 +1,4 @@
+// writers/authorGPT/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -17,18 +18,26 @@ export default function MyWriterPage() {
   const searchParams = useSearchParams();
   const queueId = searchParams.get("queueId");
 
-  const [darkMode, setDarkMode] = useState(false);
-  const [input, setInput] = useState("");
   const { data: session } = useSession();
+
+  // For the chat part:
+  const [input, setInput] = useState("");
   const [history, setHistory] = useState<{ user: string; assistant: string }[]>([]);
 
-  // State for the queue item (if a queueId is provided)
+  // For queue item:
   const [queueItem, setQueueItem] = useState<QueueItem | null>(null);
   const [loadingQueue, setLoadingQueue] = useState(!!queueId);
 
+  // Dark mode toggle:
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    if (!queueId) return;
+    if (!queueId) {
+      // If no queueId is provided, we stop loading.
+      setLoadingQueue(false);
+      return;
+    }
+
     async function fetchQueueItem() {
       try {
         const res = await fetch(`/api/writer/queue/${queueId}`, {
@@ -49,10 +58,6 @@ export default function MyWriterPage() {
     fetchQueueItem();
   }, [queueId]);
 
-  function returnToBookshelf() {
-    router.push("/account/bookshelf");
-  }
-
   function returnToDashboard() {
     router.push("/writers/dashboard");
   }
@@ -67,7 +72,6 @@ export default function MyWriterPage() {
       });
       const data = await res.json();
 
-
       if (data.error) {
         console.error("API Error:", data.error);
         setHistory((prev) => [
@@ -75,7 +79,6 @@ export default function MyWriterPage() {
           { user: input, assistant: "Error: " + JSON.stringify(data.error) },
         ]);
       } else {
-        console.log(data);
         const assistantReply =
           data.choices?.[0]?.message?.content || "No response from API";
         setHistory((prev) => [
@@ -100,13 +103,39 @@ export default function MyWriterPage() {
     ? queueItem.followerName
     : "Main";
 
+  if (!session) {
+    return <p>Please log in to access this page.</p>;
+  }
+
   return (
     <div className={darkMode ? "dark bg-gray-900 text-white" : "bg-white"}>
       <main className="relative flex min-h-screen">
         <aside className="w-1/4 border-r p-4">
-          {/* Use the queue’s username (followerName) if available */}
           <h1 className="text-2xl mb-4">{headerText}</h1>
           <p className="text-lg mb-2">Choose the prompt mode!</p>
+
+          {/* Gray box for showing current prompt details */}
+          <div className="bg-gray-200 p-2 rounded mb-4">
+            {loadingQueue ? (
+              <p className="text-sm">Loading prompt...</p>
+            ) : queueItem ? (
+              <>
+                <p className="text-sm">
+                  <strong>From:</strong> {queueItem.followerName}
+                </p>
+                <p className="text-sm">
+                  <strong>Prompt:</strong> {queueItem.prompt}
+                </p>
+                <p className="text-sm">
+                  <strong>Analysis:</strong> {queueItem.analysis}
+                </p>
+              </>
+            ) : (
+              <p className="text-sm">No follower has been selected currently!</p>
+            )}
+          </div>
+
+          {/* Prompt mode options */}
           <div className="border border-gray-300 rounded p-3 mb-3">
             <div className="flex items-center mb-2">
               <input
@@ -120,7 +149,7 @@ export default function MyWriterPage() {
               </label>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              “Send your readers an visually generated story with just few words!
+              “Send your readers a visually generated story with just a few words!”
             </p>
           </div>
           <div className="border border-gray-300 rounded p-3 mb-3">
@@ -137,7 +166,7 @@ export default function MyWriterPage() {
               </label>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              “Text Prompts should be used for cases where you want MyWriter to generate a story!
+              “Text Prompts should be used for cases where you want MyWriter to generate a story!”
             </p>
           </div>
           <div className="mb-6">
@@ -154,6 +183,7 @@ export default function MyWriterPage() {
             </div>
           </div>
         </aside>
+
         <section className="flex-1 p-4">
           <div className="flex justify-end mb-4">
             <p className="flex items-center font-semibold">
@@ -167,14 +197,12 @@ export default function MyWriterPage() {
             </p>
           </div>
           <div className="grid grid-cols-3 gap-4 text-left mb-6">
+            {/* ... Examples, Capabilities, Limitations sections ... */}
             <div className="border border-gray-200 rounded p-4">
               <h2 className="font-semibold mb-2">Examples</h2>
               <p className="text-sm mb-1">
                 <a href="#">
-                  Create me a short and funny horror story I can read before I go
-                  to bed. →
-                  Create me a short and funny horror story I can read before I go
-                  to bed. →
+                  Create me a short and funny horror story I can read before I go to bed. →
                 </a>
               </p>
               <p className="text-sm mb-1">
@@ -206,12 +234,10 @@ export default function MyWriterPage() {
                 May occasionally generate incorrect information.
               </p>
               <p className="text-sm mb-1">
-                May occasionally produce harmful instructions that might set you
-                back.
+                May occasionally produce harmful instructions that might set you back.
               </p>
               <p className="text-sm">
-                Overwhelming disparity of user-base preferences can lead into
-                prompt return delay.
+                Overwhelming disparity of user-base preferences can lead into prompt return delay.
               </p>
             </div>
           </div>
