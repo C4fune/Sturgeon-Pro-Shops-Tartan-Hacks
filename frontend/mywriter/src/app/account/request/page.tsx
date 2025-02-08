@@ -1,4 +1,13 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 const StoryRequestForm: React.FC = () => {
+  const router = useRouter();
+  function returnToBookshelf() {
+    router.push("/account/bookshelf");
+  }
+
   return (
     <main className="min-h-screen p-8 sm:p-20 font-robotoMono bg-eggshell">
       <div className="flex flex-col items-center">
@@ -22,6 +31,14 @@ const StoryRequestForm: React.FC = () => {
             Submit Request
           </button>
         </form>
+      </div>
+      <div className="absolute bottom-4 left-3 flex gap-2">
+        <button
+          className="bg-battleship shadow-sm flex items-center justify-center text-center hover:bg-eggshell hover:text-battleship text-white px-3 py-1"
+          onClick={returnToBookshelf}
+        >
+          Return to Bookshelf
+        </button>
       </div>
     </main>
   );
