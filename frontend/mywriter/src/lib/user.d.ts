@@ -28,10 +28,10 @@ export interface BookChapter {
 }
 
 export interface Author {
-    id: string
     name: string
     genreSelection: GenreSelection
     writingSamples: string[]
+    style: string
 }
 
 export interface GenreRatings {

@@ -1,6 +1,6 @@
 export default function Welcome(props: {nextPage: () => void}) {
     return (
-        <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-eggshell py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
                 <h1 className="text-4xl font-bold text-slate-900 text-center mb-8">
                     Complete your Profile
@@ -16,7 +16,7 @@ export default function Welcome(props: {nextPage: () => void}) {
                     </p>
 
                     <div className="flex gap-5">
-                        <button onClick={props.nextPage} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                        <button onClick={props.nextPage} className="w-full bg-battleship hover:bg-eggshell text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
                             Get Started
                         </button>
                     </div>
