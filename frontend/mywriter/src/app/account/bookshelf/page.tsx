@@ -17,9 +17,15 @@ export default function BookshelfPage() {
     router.push("/account/mywriter");
   }
 
+  function returnToHome() {
+    router.push("/")
+  }
+
   return (
     <main className="min-h-screen p-8 sm:p-20 font-robotoMono bg-eggshell">
       <h1 className="text-3xl mb-8">My BookShelf</h1>
+      <button className="bg-battleship shadow-sm hover:bg-eggshell hover:text-black border bg-black text-white px-3 py-1 mb-4" onClick={returnToHome}>Return to Home</button>
+      
       <div className="grid grid-cols-24 grid-rows-2 gap-4">
         {books.map((book, i) => (
           <div
