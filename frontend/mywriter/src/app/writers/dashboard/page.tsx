@@ -19,15 +19,18 @@ export default function WriterDashboard() {
   const [queue, setQueue] = useState<QueueItem[]>([]);
   const [loading, setLoading] = useState(true);
 
+  function handlePlusClick() {
+    router.push("/writers/authorGPT");
+  }
+
   useEffect(() => {
     if (!session) return;
-    
     async function fetchQueue() {
       try {
         const res = await fetch("/api/writer/queue", {
           headers: {
-            "Content-Type": "application/json",
-          },
+            "Content-Type": "application/json"
+          }
         });
         if (res.ok) {
           const data = await res.json();
@@ -41,10 +44,7 @@ export default function WriterDashboard() {
         setLoading(false);
       }
     }
-
     fetchQueue();
-
-    // Optionally poll for new items every 10 seconds
     const interval = setInterval(fetchQueue, 10000);
     return () => clearInterval(interval);
   }, [session]);
@@ -63,7 +63,6 @@ export default function WriterDashboard() {
           </button>
         </Link>
       </div>
-
       <section>
         <h2 className="text-2xl mb-4">Prompt Queue</h2>
         {loading ? (
@@ -76,7 +75,10 @@ export default function WriterDashboard() {
               <div
                 key={item.id}
                 className="border border-battleship rounded-md p-4 bg-white hover:bg-eggshell cursor-pointer"
-                onClick={() => router.push(`/writer/authorbookshelf?queueId=${item.id}`)}
+                onClick={() => {
+                  router.push(`/writer/authorbookshelf?queueId=${item.id}`);
+                  handlePlusClick();
+                }}
               >
                 <p className="font-semibold">From: {item.followerName}</p>
                 <p className="italic">Prompt: {item.prompt}</p>
@@ -89,3 +91,4 @@ export default function WriterDashboard() {
     </main>
   );
 }
+
