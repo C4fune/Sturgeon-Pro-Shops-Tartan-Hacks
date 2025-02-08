@@ -1,29 +1,31 @@
-"use client"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function MyWriterPage() {
-  const router = useRouter()
-  const [darkMode, setDarkMode] = useState(false)
-  const [input, setInput] = useState("")
+  const router = useRouter();
+  const [darkMode, setDarkMode] = useState(false);
+  const [input, setInput] = useState("");
+  const { data: session, status } = useSession();
   const [history, setHistory] = useState<{ user: string; assistant: string }[]>(
     []
-  )
+  );
   function returnToBookshelf() {
     router.push("/account/bookshelf");
   }
 
   async function handleSend() {
-    if (!input) return
+    if (!input) return;
     const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: [{ role: "user", content: input }] })
-    })
-    const data = await res.json()
-    const assistantReply = data.choices?.[0]?.message?.content || ""
-    setHistory([...history, { user: input, assistant: assistantReply }])
-    setInput("")
+      body: JSON.stringify({ messages: [{ role: "user", content: input }] }),
+    });
+    const data = await res.json();
+    const assistantReply = data.choices?.[0]?.message?.content || "";
+    setHistory([...history, { user: input, assistant: assistantReply }]);
+    setInput("");
   }
 
   return (
@@ -34,7 +36,12 @@ export default function MyWriterPage() {
           <p className="text-lg mb-2">Choose the prompt mode!</p>
           <div className="border border-gray-300 rounded p-3 mb-3">
             <div className="flex items-center mb-2">
-              <input type="radio" name="promptMode" id="videoMode" />
+              <input
+                type="radio"
+                name="promptMode"
+                id="videoMode"
+                className=" checked:bg-battleship checked:border-battleship"
+              />
               <label htmlFor="videoMode" className="ml-2">
                 Video Prompts
               </label>
@@ -53,6 +60,7 @@ export default function MyWriterPage() {
                 name="promptMode"
                 id="textMode"
                 defaultChecked
+                className="checked:bg-battleship checked:border-battleship"
               />
               <label htmlFor="textMode" className="ml-2">
                 Text Prompts
@@ -80,7 +88,9 @@ export default function MyWriterPage() {
         </aside>
         <section className="flex-1 p-4">
           <div className="flex justify-end mb-4">
-            <p className="flex items-center font-semibold">GG [USERNAME]</p>
+            <p className="flex items-center font-semibold">
+              {session?.user?.name}
+            </p>
           </div>
           <div className="text-left mb-6">
             <h1 className="text-3xl font-bold">MyWriter</h1>
@@ -98,7 +108,9 @@ export default function MyWriterPage() {
                 </a>
               </p>
               <p className="text-sm mb-1">
-                <a href="#">Can you tell me which authors are currently available? →</a>
+                <a href="#">
+                  Can you tell me which authors are currently available? →
+                </a>
               </p>
               <p className="text-sm">
                 <a href="#">
@@ -157,11 +169,14 @@ export default function MyWriterPage() {
           </div>
         </section>
         <div className="absolute bottom-4 left-3 flex gap-2">
-          <button className="bg-battleship shadow-sm flex items-center justify-center text-center hover:bg-eggshell border bg-black text-white px-3 py-1" onClick={returnToBookshelf}>
+          <button
+            className="bg-battleship shadow-sm flex items-center justify-center text-center hover:bg-eggshell border hover:text-battleship text-white px-3 py-1"
+            onClick={returnToBookshelf}
+          >
             Return to Bookshelf
           </button>
         </div>
       </main>
     </div>
-  )
+  );
 }
