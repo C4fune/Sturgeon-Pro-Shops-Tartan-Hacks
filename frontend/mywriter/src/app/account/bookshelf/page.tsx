@@ -51,12 +51,6 @@ export default function BookshelfPage() {
           >
             Return to Home
           </button>
-          <button
-            className="bg-black rounded hover:bg-eggshell hover:text-black border-transparent hover:border-battleship border-2 text-white px-3 py-1"
-            onClick={goToLetterbox}
-          >
-            View Letterbox
-          </button>
         </div>
       </div>
       <div className="grid grid-cols-24 grid-rows-2 gap-4">
