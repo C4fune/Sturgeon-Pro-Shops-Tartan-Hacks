@@ -1,15 +1,53 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
+
+interface QueueItem {
+  id: string;
+  followerName: string;
+  followerEmail: string;
+  prompt: string;
+  analysis: string;
+}
 
 export default function MyWriterPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const queueId = searchParams.get("queueId");
+
   const [darkMode, setDarkMode] = useState(false);
   const [input, setInput] = useState("");
   const { data: session } = useSession();
   const [history, setHistory] = useState<{ user: string; assistant: string }[]>([]);
+
+  // State for the queue item (if a queueId is provided)
+  const [queueItem, setQueueItem] = useState<QueueItem | null>(null);
+  const [loadingQueue, setLoadingQueue] = useState(!!queueId);
+
+  // If a queueId exists, fetch the corresponding queue item
+  useEffect(() => {
+    if (!queueId) return;
+    async function fetchQueueItem() {
+      try {
+        const res = await fetch(`/api/writer/queue/${queueId}`, {
+          headers: { "Content-Type": "application/json" },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setQueueItem(data);
+        } else {
+          console.error("Failed to fetch queue item");
+        }
+      } catch (err) {
+        console.error("Error fetching queue item:", err);
+      } finally {
+        setLoadingQueue(false);
+      }
+    }
+    fetchQueueItem();
+  }, [queueId]);
 
   function returnToBookshelf() {
     router.push("/account/bookshelf");
@@ -33,7 +71,7 @@ export default function MyWriterPage() {
           { user: input, assistant: "Error: " + JSON.stringify(data.error) },
         ]);
       } else {
-        console.log(data)
+        console.log(data);
         const assistantReply =
           data.choices?.[0]?.message?.content || "No response from API";
         setHistory((prev) => [
@@ -52,11 +90,21 @@ export default function MyWriterPage() {
     }
   }
 
+  // Set the header text:
+  // If we're still loading the queue, display "Loading..."
+  // If a queue item was fetched, show its followerName; otherwise, default to "Main".
+  const headerText = loadingQueue
+    ? "Loading..."
+    : queueItem
+    ? queueItem.followerName
+    : "Main";
+
   return (
     <div className={darkMode ? "dark bg-gray-900 text-white" : "bg-white"}>
       <main className="relative flex min-h-screen">
         <aside className="w-1/4 border-r p-4">
-          <h1 className="text-2xl mb-4">Main</h1>
+          {/* Use the queue’s username (followerName) if available */}
+          <h1 className="text-2xl mb-4">{headerText}</h1>
           <p className="text-lg mb-2">Choose the prompt mode!</p>
           <div className="border border-gray-300 rounded p-3 mb-3">
             <div className="flex items-center mb-2">
@@ -71,10 +119,7 @@ export default function MyWriterPage() {
               </label>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              “Creative mode” could refer to a chatbot or AI language model
-              designed to assist and inspire creativity. Such a chatbot or AI
-              model might provide prompts, suggest ideas, or even generate
-              content for creative projects.
+              “Creative mode” could refer to a chatbot or AI language model designed to assist and inspire creativity. Such a chatbot or AI model might provide prompts, suggest ideas, or even generate content for creative projects.
             </p>
           </div>
           <div className="border border-gray-300 rounded p-3 mb-3">
@@ -91,9 +136,7 @@ export default function MyWriterPage() {
               </label>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              “Balance mode” generally refers to an AI chatbot or language model
-              designed to strike a balance between providing helpful responses
-              and maintaining appropriate boundaries with users.
+              “Balance mode” generally refers to an AI chatbot or language model designed to strike a balance between providing helpful responses and maintaining appropriate boundaries with users.
             </p>
           </div>
           <div className="mb-6">
@@ -127,8 +170,7 @@ export default function MyWriterPage() {
               <h2 className="font-semibold mb-2">Examples</h2>
               <p className="text-sm mb-1">
                 <a href="#">
-                  Create me a short and funny horror story I can read before I go
-                  to bed. →
+                  Create me a short and funny horror story I can read before I go to bed. →
                 </a>
               </p>
               <p className="text-sm mb-1">
@@ -160,12 +202,10 @@ export default function MyWriterPage() {
                 May occasionally generate incorrect information.
               </p>
               <p className="text-sm mb-1">
-                May occasionally produce harmful instructions that might set you
-                back.
+                May occasionally produce harmful instructions that might set you back.
               </p>
               <p className="text-sm">
-                Overwhelming disparity of user-base preferences can lead into
-                prompt return delay.
+                Overwhelming disparity of user-base preferences can lead into prompt return delay.
               </p>
             </div>
           </div>
@@ -180,7 +220,7 @@ export default function MyWriterPage() {
           <div className="border-t pt-4 flex items-center">
             <input
               className="flex-1 border p-2 mr-2"
-              placeholder="Submit your story idea"
+              placeholder="Please explain what you want to write about..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
@@ -204,4 +244,3 @@ export default function MyWriterPage() {
     </div>
   );
 }
-
