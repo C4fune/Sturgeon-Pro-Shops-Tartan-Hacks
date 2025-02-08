@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { mintAndRegisterOutline } from "@/app/story-utils/mintAndRegisterOutline";
+import { registerDerivativeCommercialExpandedOutline } from "@/app/story-utils/registerDerivativeCommercialExpandedOutline";
 
 export default function MyWriterPage() {
   const router = useRouter();
@@ -17,6 +19,9 @@ export default function MyWriterPage() {
 
   async function handleSend() {
     if (!input) return;
+
+    const IPresponse = await mintAndRegisterOutline(input) // intellectual property this text
+    console.log(`View on the explorer: https://explorer.story.foundation/ipa/${IPresponse.ipId}`)
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -24,6 +29,8 @@ export default function MyWriterPage() {
         body: JSON.stringify({ messages: [{ role: "user", content: input }] }),
       });
       const data = await res.json();
+
+
 
       // Check if there was an error in the API response.
       if (data.error) {

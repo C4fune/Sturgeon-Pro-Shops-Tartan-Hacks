@@ -20,7 +20,9 @@ export default function MyWriterPage() {
   const [darkMode, setDarkMode] = useState(false);
   const [input, setInput] = useState("");
   const { data: session } = useSession();
-  const [history, setHistory] = useState<{ user: string; assistant: string }[]>([]);
+  const [history, setHistory] = useState<{ user: string; assistant: string }[]>(
+    []
+  );
 
   // State for the queue item (if a queueId is provided)
   const [queueItem, setQueueItem] = useState<QueueItem | null>(null);
@@ -51,6 +53,8 @@ export default function MyWriterPage() {
 
   function returnToBookshelf() {
     router.push("/account/bookshelf");
+  function returnToDashboard() {
+    router.push("/writers/dashboard");
   }
 
   async function handleSend() {
@@ -171,6 +175,8 @@ export default function MyWriterPage() {
               <p className="text-sm mb-1">
                 <a href="#">
                   Create me a short and funny horror story I can read before I go to bed. →
+                  Create me a short and funny horror story I can read before I
+                  go to bed. →
                 </a>
               </p>
               <p className="text-sm mb-1">
@@ -235,9 +241,9 @@ export default function MyWriterPage() {
         <div className="absolute bottom-4 left-3 flex gap-2">
           <button
             className="bg-battleship shadow-sm flex items-center justify-center text-center hover:bg-eggshell border hover:text-battleship text-white px-3 py-1"
-            onClick={returnToBookshelf}
+            onClick={returnToDashboard}
           >
-            Return to Bookshelf
+            Return to Dashboard
           </button>
         </div>
       </main>
