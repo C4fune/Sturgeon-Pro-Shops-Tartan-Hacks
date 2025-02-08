@@ -120,10 +120,7 @@ export default function MyWriterPage() {
               </label>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              “Creative mode” could refer to a chatbot or AI language model
-              designed to assist and inspire creativity. Such a chatbot or AI
-              model might provide prompts, suggest ideas, or even generate
-              content for creative projects.
+              “Send your readers an visually generated story with just few words!
             </p>
           </div>
           <div className="border border-gray-300 rounded p-3 mb-3">
@@ -140,9 +137,7 @@ export default function MyWriterPage() {
               </label>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              “Balance mode” generally refers to an AI chatbot or language model
-              designed to strike a balance between providing helpful responses
-              and maintaining appropriate boundaries with users.
+              “Text Prompts should be used for cases where you want MyWriter to generate a story!
             </p>
           </div>
           <div className="mb-6">
