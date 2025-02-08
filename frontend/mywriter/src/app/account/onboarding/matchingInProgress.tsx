@@ -13,7 +13,7 @@ export default function MatchInProgress() {
                         Your match is on the way...
                     </p>
 
-                    <LoadingBar progress={45} />
+                    <LoadingBar />
 
                     <div className="flex gap-5">
                         <button disabled className="w-full bg-indigo-300 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">

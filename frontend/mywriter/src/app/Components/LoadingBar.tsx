@@ -1,16 +1,28 @@
-export default function LoadingBar({ progress }: { progress: number }) {
-    return (
-        <div className="w-full bg-eggshell rounded-full h-2.5">
-            <div 
-                className="bg-battleship h-2.5 rounded-full transition-all duration-300 ease-out" 
-                style={{ width: `${progress}%` }}
-            >
-                <div className="w-full text-right pr-1 -mt-5">
-                    <span className="text-xs font-medium text-indigo-600">
-                        {Math.round(progress)}%
-                    </span>
-                </div>
-            </div>
-        </div>
-    )
-}
+import { useState, useEffect } from 'react';
+
+const LoadingBar = () => {
+  const [position, setPosition] = useState(0);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+        setPosition(prev => (prev + 1) % 50);
+    }, 50);
+    
+    return () => clearInterval(timer);
+  }, []);
+
+  const dots = '...';
+  const spacer = ' '.repeat(50);
+  const combinedText = spacer + dots + spacer;
+  const visibleSection = combinedText.slice(position, position + 50);
+
+  return (
+    <div className="w-full py-8 overflow-hidden font-mono">
+      <div className="whitespace-pre text-indigo-400 text-2xl text-center">
+        {visibleSection}
+      </div>
+    </div>
+  );
+};
+
+export default LoadingBar;
