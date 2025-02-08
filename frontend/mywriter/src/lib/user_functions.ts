@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { enableMultiTabIndexedDbPersistence, getDocs, getFirestore } from "firebase/firestore";
 import { doc, collection, getDoc, addDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore"; 
 import { GenreRatings, Interests, Author, User } from "./user";
+import { randomUUID } from "crypto";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -64,9 +65,10 @@ export async function updateMatchedAuthor(userID: string, writerID: string) {
 export async function addStoryRequest(fromID: string, fromName: string, toID: string, request: string) {
     await updateDoc(doc(db, 'writers', toID), {
         queue: arrayUnion({
+            id: randomUUID(),
             fromID: fromID,
             fromName: fromName,
-            body: request
+            prompt: request
         })
     })
 }

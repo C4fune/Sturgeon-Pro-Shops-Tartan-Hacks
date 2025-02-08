@@ -4,21 +4,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-
-interface QueueItem {
-  id: string;
-  followerName: string;
-  followerEmail: string;
-  prompt: string;
-  analysis: string;
-}
+import { QueueRequest } from "@/lib/user";
 
 
 
 export default function WriterDashboard() {
   const { data: session } = useSession();
   const router = useRouter();
-  const [queue, setQueue] = useState<QueueItem[]>([]);
+  const [queue, setQueue] = useState<QueueRequest[]>([]);
   const [loading, setLoading] = useState(true);
   function returnToHome() {
     router.push("/");
@@ -32,7 +25,7 @@ export default function WriterDashboard() {
     if (!session) return;
     async function fetchQueue() {
       try {
-        const res = await fetch("/api/writer/queue", {
+        const res = await fetch("/api/writers/" + session?.user?.email + "/queue", {
           headers: {
             "Content-Type": "application/json"
           }
@@ -92,9 +85,8 @@ export default function WriterDashboard() {
                   handlePlusClick();
                 }}
               >
-                <p className="font-semibold">From: {item.followerName}</p>
+                <p className="font-semibold">From: {item.fromName}</p>
                 <p className="italic">Prompt: {item.prompt}</p>
-                <p className="text-sm text-gray-600">Analysis: {item.analysis}</p>
               </div>
             ))}
           </div>

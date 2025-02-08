@@ -4,14 +4,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
-
-interface QueueItem {
-  id: string;
-  followerName: string;
-  followerEmail: string;
-  prompt: string;
-  analysis: string;
-}
+import { QueueRequest } from "@/lib/user";
 
 export default function MyWriterPage() {
   const router = useRouter();
@@ -24,8 +17,8 @@ export default function MyWriterPage() {
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<{ user: string; assistant: string }[]>([]);
 
-  // For queue item:
-  const [queueItem, setQueueItem] = useState<QueueItem | null>(null);
+  // State for the queue item (if a queueId is provided)
+  const [queueItem, setQueueItem] = useState<QueueRequest | null>(null);
   const [loadingQueue, setLoadingQueue] = useState(!!queueId);
 
   // Dark mode toggle:
@@ -40,7 +33,7 @@ export default function MyWriterPage() {
 
     async function fetchQueueItem() {
       try {
-        const res = await fetch(`/api/writer/queue/${queueId}`, {
+        const res = await fetch(`/api/writers/${session?.user?.email}/queue/${queueId}`, {
           headers: { "Content-Type": "application/json" },
         });
         if (res.ok) {
@@ -100,7 +93,7 @@ export default function MyWriterPage() {
   const headerText = loadingQueue
     ? "Loading..."
     : queueItem
-    ? queueItem.followerName
+    ? queueItem.fromName
     : "Main";
 
   if (!session) {
@@ -121,13 +114,10 @@ export default function MyWriterPage() {
             ) : queueItem ? (
               <>
                 <p className="text-sm">
-                  <strong>From:</strong> {queueItem.followerName}
+                  <strong>From:</strong> {queueItem.fromName}
                 </p>
                 <p className="text-sm">
                   <strong>Prompt:</strong> {queueItem.prompt}
-                </p>
-                <p className="text-sm">
-                  <strong>Analysis:</strong> {queueItem.analysis}
                 </p>
               </>
             ) : (

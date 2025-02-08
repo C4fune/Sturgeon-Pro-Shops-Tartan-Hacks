@@ -37,7 +37,9 @@ export interface Author {
 }
 
 export interface QueueRequest {
-    from: string
+    id: UUID
+    fromID: string
+    fromName: string
     prompt: string
 }
 
