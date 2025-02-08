@@ -9,8 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primaryBg: "#E3DFCC", // Example: Dark background
+        primaryText: "#0A0908", // Example: White text
+        secondaryText: "#798478", // Example: Gray text
+        accept: "#216E61", // Example: Green for success
+        reject: "#E94F37", // Example: Red for errors
+      },
+      fontFamily: {
+        inter: "var(--font-inter)",
+        robotoMono: "var(--font-roboto-mono)",
       },
     },
   },
