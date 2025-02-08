@@ -15,8 +15,8 @@ export default function MatchComplete() {
                     </p>
 
                     <div className="flex gap-5">
-                        <button className="w-full bg-battleship hover:bg-black text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
-                            <Link href="/writers/dashboard">Go to Writer Dashboard</Link>
+                        <button className="w-full bg-battleship hover:bg-eggshell text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                            <a href="/writers/dashboard">Go to Writer Dashboard</a>
                         </button>
                     </div>
                 </div>

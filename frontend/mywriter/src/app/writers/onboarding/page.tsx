@@ -1,6 +1,6 @@
 "use client"
 
-import { GenreSelection } from "@/lib/user";
+import { GenreRatings } from "@/lib/user";
 import { useState } from "react"
 import { useSession } from "next-auth/react";
 import Samples from "./samples";
@@ -34,19 +34,19 @@ export default function Onboarding() {
         })
     }
 
-    const [genreSelection, setGenreRatings] = useState<GenreSelection>({
-        scifi: true,
-        fantasy: true,
-        dystopia: true,
-        mystery: true,
-        horror: true,
-        action: true,
-        adventure: true,
-        teen: true,
-        romance: true,
-        historical: true,
-        thriller: true,
-        children: true,
+    const [genreRatings, setGenreRatings] = useState<GenreRatings>({
+        scifi: 5,
+        fantasy: 5,
+        dystopia: 5,
+        mystery: 5,
+        horror: 5,
+        action: 5,
+        adventure: 5,
+        teen: 5,
+        romance: 5,
+        historical: 5,
+        thriller: 5,
+        children: 5,
     });
 
     async function beginMatch() {
@@ -54,7 +54,7 @@ export default function Onboarding() {
             method: "PUT",
             body: JSON.stringify({
                 name: session?.user?.name,
-                genres: genreSelection,
+                genres: genreRatings,
                 samples: samples,
                 customInput: customInput,
             })
@@ -71,7 +71,7 @@ export default function Onboarding() {
                 {
                     "Welcome" : <Welcome nextPage={() => setPage("Genres")}/>,
                     "Genres": <ChooseGenres 
-                        genreSelection={genreSelection}
+                        genreSelection={genreRatings}
                         setGenreSelection={setGenreRatings}
                         previousPage={() => {setPage("Welcome")}}
                         nextPage={() => {setPage("Writing Sample")}}/>,

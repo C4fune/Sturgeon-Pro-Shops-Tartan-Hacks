@@ -25,7 +25,7 @@ export default function Home() {
         </div>
         <div className="flex justify-center space-x-4">
           <Link
-            href="writers/onboarding"
+            href="writers/dashboard"
             className="bg-battleship text-eggshell px-4 py-2 rounded-lg hover:bg-eggshell hover:text-battleship border-2 border-battleship"
           >
             Go to Writer Dashboard
