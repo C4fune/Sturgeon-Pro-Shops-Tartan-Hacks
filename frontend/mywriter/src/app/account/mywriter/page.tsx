@@ -1,4 +1,6 @@
+// app/account/mywriter/page.tsx
 "use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -7,26 +9,47 @@ export default function MyWriterPage() {
   const router = useRouter();
   const [darkMode, setDarkMode] = useState(false);
   const [input, setInput] = useState("");
-  const { data: session, status } = useSession();
-  const [history, setHistory] = useState<{ user: string; assistant: string }[]>(
-    []
-  );
+  const { data: session } = useSession();
+  const [history, setHistory] = useState<{ user: string; assistant: string }[]>([]);
+
   function returnToBookshelf() {
     router.push("/account/bookshelf");
   }
 
   async function handleSend() {
     if (!input) return;
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: [{ role: "user", content: input }] }),
-    });
-    const data = await res.json();
-    console.log(data)
-    const assistantReply = data.content?.[0]?.text || "OUT OF API CALLS";
-    setHistory([...history, { user: input, assistant: assistantReply }]);
-    setInput("");
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: [{ role: "user", content: input }] }),
+      });
+      const data = await res.json();
+
+      // Check if there was an error in the API response.
+      if (data.error) {
+        console.error("API Error:", data.error);
+        setHistory((prev) => [
+          ...prev,
+          { user: input, assistant: "Error: " + JSON.stringify(data.error) },
+        ]);
+      } else {
+        const assistantReply =
+          data.choices?.[0]?.message?.content || "No response from API";
+        setHistory((prev) => [
+          ...prev,
+          { user: input, assistant: assistantReply },
+        ]);
+      }
+      setInput("");
+    } catch (err) {
+      console.error("Fetch error:", err);
+      setHistory((prev) => [
+        ...prev,
+        { user: input, assistant: "Error sending message" },
+      ]);
+      setInput("");
+    }
   }
 
   return (
@@ -41,7 +64,7 @@ export default function MyWriterPage() {
                 type="radio"
                 name="promptMode"
                 id="videoMode"
-                className=" checked:bg-battleship checked:border-battleship"
+                className="checked:bg-battleship checked:border-battleship"
               />
               <label htmlFor="videoMode" className="ml-2">
                 Video Prompts
@@ -104,8 +127,8 @@ export default function MyWriterPage() {
               <h2 className="font-semibold mb-2">Examples</h2>
               <p className="text-sm mb-1">
                 <a href="#">
-                  Create me a short and funny horror story I can read before I
-                  go to bed. →
+                  Create me a short and funny horror story I can read before I go
+                  to bed. →
                 </a>
               </p>
               <p className="text-sm mb-1">
@@ -181,3 +204,4 @@ export default function MyWriterPage() {
     </div>
   );
 }
+
