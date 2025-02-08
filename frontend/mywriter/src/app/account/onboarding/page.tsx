@@ -69,9 +69,12 @@ export default function Onboarding() {
       }),
     });
 
-    await fetch("/api/user/" + session?.user?.email + "/match")
+    let response = await fetch("/api/user/" + session?.user?.email + "/match")
+    let match = await response.json()
 
-    await delay(2000);
+    setMatch(match.name)
+
+    await delay(1000);
 
     setPage("Matched");
   }

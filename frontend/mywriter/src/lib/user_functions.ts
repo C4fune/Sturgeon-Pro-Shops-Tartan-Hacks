@@ -100,12 +100,16 @@ export async function matchUserWithWriter(userID: string) {
     });
 
     const data = await res.json();
-    const assistantReply = data.content?.[0]?.text || "OUT OF API CALLS";
+    const assistantReply = data.choices?.[0]?.message?.content || "OUT OF API CALLS";
 
     console.log(prompt)
     console.log(assistantReply)
 
     const matchedAuthor = writers[parseInt(assistantReply)]
+
+    await updateDoc(doc(db, 'users', userID), {
+        matchedAuthor: matchedAuthor.id
+    })
 
     return matchedAuthor;
 }
