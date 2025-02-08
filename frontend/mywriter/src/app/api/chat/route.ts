@@ -1,4 +1,4 @@
-export async function POST(req: Request) {
+export async function POST(req: Request, content_type : string) {
     const body = await req.json()
     const messages = body.messages
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -13,12 +13,7 @@ export async function POST(req: Request) {
       })
     })
     const data = await response.json()
-
-    /*
-    In the middle, we're going to tag the intellectual property
-    using story. 
     
-    */
     return new Response(JSON.stringify(data))
   }
   

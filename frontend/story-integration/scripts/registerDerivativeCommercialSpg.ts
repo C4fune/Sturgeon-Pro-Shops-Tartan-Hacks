@@ -47,6 +47,7 @@ const main = async function () {
         },
         // NOTE: The below metadata is not configured properly. It is just to make things simple.
         // See `simpleMintAndRegister.ts` for a proper example.
+        ### FIX THIS ###
         ipMetadata: {
             ipMetadataURI: 'test-uri',
             ipMetadataHash: toHex('test-metadata-hash', { size: 32 }),
