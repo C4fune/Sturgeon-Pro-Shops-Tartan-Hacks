@@ -23,7 +23,7 @@ export default function MyWriterPage() {
       body: JSON.stringify({ messages: [{ role: "user", content: input }] }),
     });
     const data = await res.json();
-    const assistantReply = data.choices?.[0]?.message?.content || "";
+    const assistantReply = data.choices?.[0]?.message?.content || "GPT IS BROKEN";
     setHistory([...history, { user: input, assistant: assistantReply }]);
     setInput("");
   }
@@ -156,7 +156,7 @@ export default function MyWriterPage() {
           <div className="border-t pt-4 flex items-center">
             <input
               className="flex-1 border p-2 mr-2"
-              placeholder="Send a message"
+              placeholder="Submit your story idea"
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
