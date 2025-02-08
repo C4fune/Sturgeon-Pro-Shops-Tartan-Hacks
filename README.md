@@ -23,11 +23,6 @@
 
 Link: https://docs.google.com/presentation/d/1lMtLE8DsY-DJqViKbghTCm6WyT0A7UI5MA8Kp7G8JcI/edit?usp=sharing
 
-
-### Presentation Video
-
-Link: 
-
 ___
 
 ## Update_Logs
