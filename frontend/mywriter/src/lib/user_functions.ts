@@ -95,3 +95,7 @@ export async function deleteRequest(authorID: string, queueID: string) {
         queue: arrayRemove(elementToRemove)
     });
 }
+
+export async function getBook(userID: string, id: string) {
+    return (await getUserData(userID))?.books.filter((book: any) => book.id == id)[0]
+}
