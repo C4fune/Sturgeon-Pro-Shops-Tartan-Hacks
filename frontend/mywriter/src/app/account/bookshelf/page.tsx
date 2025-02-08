@@ -19,7 +19,7 @@ export default function BookshelfPage() {
 
   return (
     <main className="min-h-screen p-8 sm:p-20 font-robotoMono bg-eggshell">
-      <h1 className="text-3xl mb-8 text-bold">My BookShelf</h1>
+      <h1 className="text-3xl mb-8 font-bold">My BookShelf</h1>
       <div className="grid grid-cols-24 grid-rows-2 gap-4">
         {books.map((book, i) => (
           <div

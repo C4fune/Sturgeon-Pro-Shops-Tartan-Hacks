@@ -1,0 +1,26 @@
+<svg width="240" height="290" viewBox="0 0 240 290" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 75C0 61.1929 11.1929 50 25 50H215C228.807 50 240 61.1929 240 75V265C240 278.807 228.807 290 215 290H25C11.1929 290 0 278.807 0 265V75Z" fill="#798478"/>
+<rect x="16" y="66" width="210" height="75" rx="10" fill="#E3DFCC"/>
+<circle cx="32" cy="214" r="13" fill="#0A0908"/>
+<circle cx="50" cy="179" r="13" fill="#0A0908"/>
+<circle cx="68" cy="214" r="13" fill="#0A0908"/>
+<circle cx="86" cy="179" r="13" fill="#0A0908"/>
+<circle cx="104" cy="214" r="13" fill="#0A0908"/>
+<circle cx="13" cy="13" r="13" transform="matrix(1 0 0 -1 127 227)" fill="#0A0908"/>
+<circle cx="13" cy="13" r="13" transform="matrix(1 0 0 -1 145 262)" fill="#0A0908"/>
+<circle cx="13" cy="13" r="13" transform="matrix(1 0 0 -1 163 227)" fill="#0A0908"/>
+<circle cx="13" cy="13" r="13" transform="matrix(1 0 0 -1 181 262)" fill="#0A0908"/>
+<circle cx="13" cy="13" r="13" transform="matrix(1 0 0 -1 199 227)" fill="#0A0908"/>
+<rect x="31" width="177" height="91" rx="5" fill="url(#paint0_linear_87_1308)"/>
+<rect x="48" y="17" width="50" height="6" rx="3" fill="#0A0908"/>
+<rect opacity="0.8" x="48" y="27" width="130" height="6" rx="3" fill="#0A0908"/>
+<rect opacity="0.5" x="48" y="37" width="100" height="6" rx="3" fill="#0A0908"/>
+<rect opacity="0.3" x="48" y="47" width="100" height="6" rx="3" fill="#0A0908"/>
+<rect opacity="0.2" x="48" y="57" width="130" height="6" rx="3" fill="#0A0908"/>
+<defs>
+<linearGradient id="paint0_linear_87_1308" x1="119.5" y1="0" x2="119.5" y2="91" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D9D9D9"/>
+<stop offset="1" stop-color="#E3DFCC"/>
+</linearGradient>
+</defs>
+</svg>
