@@ -17,9 +17,9 @@ export default function BookshelfPage() {
   function returnToHome() {
     router.push("/");
   }
-  function goToLetterbox() {
-    router.push("/account/letterbox");
-  }
+  
+  
+
   const [userData, setUserData] = useState<User | null>(null);
   const { data: session } = useSession();
   useEffect(() => {

@@ -6,6 +6,7 @@ import { redirect, useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Author, Book, QueueRequest } from "@/lib/user";
 import LoadingBar from "@/app/Components/LoadingBar";
+import { randomUUID } from "crypto";
 
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
@@ -103,7 +104,8 @@ export default function MyWriterPage() {
 
         const book: Book = {
           title: titleReply,
-          body: assistantReply
+          body: assistantReply,
+          id: randomUUID()
         } 
 
         await fetch(`/api/user/${queueItem?.fromID}/pushBook`, {
