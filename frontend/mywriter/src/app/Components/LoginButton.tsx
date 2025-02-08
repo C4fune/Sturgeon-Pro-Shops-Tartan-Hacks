@@ -15,33 +15,31 @@ export default function LoginButton() {
 
   if (session != null && session.user != null) {
     return (
-      <div className="flex-col">
-        Signed in as {session.user.email} <br />
-        <div className="flex gap-16">
-          <button
-            className="text-5xl cursor-pointer hover:bg-slate-200 hover:text-black rounded-md transition-all duration-200 border-slate-200 border"
-            onClick={() => signOut()}
-          >
-            Sign out.
-          </button>
-          <Link
-            href="account/bookshelf/"
-            className="text-5xl cursor-pointer hover:bg-slate-200 hover:text-black rounded-md transition-all duration-200 border-slate-200 border"
-          >
-            Go to profile.
-          </Link>
-        </div>
-      </div>
+    <div>
+        {/* Signed in as {session.user.email} <br /> */}
+                <Link
+        href="asccount/bookshelf/"
+        className="bg-battleship text-eggshell px-4 py-2 rounded-lg hover:bg-eggshell hover:text-battleship border-2 border-battleship"
+        >
+        Go to Profile
+        </Link>
+    <div className="flex gap-16">
+        <button
+        className="bg-battleship text-eggshell px-4 py-2 rounded-lg hover:bg-eggshell hover:text-battleship border-2 border-battleship"
+        onClick={() => signOut()}
+        >
+        Sign Out
+        </button>
+    </div>
+    </div>
     );
   }
   return (
-    <div className="flex-col">
-      <button
-        className="bg-battleship text-eggshell px-4 py-2 rounded-lg hover:bg-eggshell hover:text-battleship border-2 border-battleship"
-        onClick={() => signIn()}
-      >
-        Login
-      </button>
-    </div>
+    <button
+    className="bg-battleship text-eggshell px-4 py-2 rounded-lg hover:bg-eggshell hover:text-battleship border-2 border-battleship"
+    onClick={() => signIn()}
+    >
+    Login
+    </button>
   );
 }
