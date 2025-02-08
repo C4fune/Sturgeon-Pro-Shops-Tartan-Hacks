@@ -32,6 +32,6 @@ export async function register(username: string, genreData: GenreRatings) {
     })
 }
 
-export async function getUserData(username) {
+export async function getUserData(username: string) {
     return (await getDoc(doc(db, 'users', username))).data()
 }

@@ -4,8 +4,8 @@ export default function LoginButton() {
   const { data: session } = useSession()
 
   if (session != null) {
-    fetch("api/register/" + session.user?.name, {
-      method: "PUT"
+    fetch("api/register/" + session.user?.email, {
+      method: "PUT",
     })
   }
 

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import LoginButton from "./Components/LoginButton";
+require("dotenv").config()
 
 export default function Home() {
   return (
