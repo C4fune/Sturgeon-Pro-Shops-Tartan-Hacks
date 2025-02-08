@@ -17,6 +17,10 @@ export default function BookshelfPage() {
   function returnToHome() {
     router.push("/");
   }
+
+  function openBook(book: Book) {
+    router.push(`/account/book/${book.id}`)
+  }
   
   
 
@@ -79,7 +83,7 @@ export default function BookshelfPage() {
           <div
             key={i}
             className="border-battleship rounded-md border-4 bg-battleship shadow-sm flex items-center justify-center text-center h-40 hover:bg-eggshell"
-            onClick={handlePlusClick}
+            onClick={() => openBook(book)}
           >
             <div className="text-4xl text-black">{book.title}</div>
           </div>
