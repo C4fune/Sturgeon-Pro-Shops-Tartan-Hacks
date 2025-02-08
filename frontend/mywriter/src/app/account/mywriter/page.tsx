@@ -9,6 +9,9 @@ export default function MyWriterPage() {
   const [history, setHistory] = useState<{ user: string; assistant: string }[]>(
     []
   )
+  function returnToBookshelf() {
+    router.push("/account/bookshelf");
+  }
 
   async function handleSend() {
     if (!input) return
@@ -109,7 +112,7 @@ export default function MyWriterPage() {
                 Remembers what user said earlier in the conversation.
               </p>
               <p className="text-sm mb-1">
-                Allows user to provide follow‐up corrections.
+                Allows user to provide follow-up corrections.
               </p>
               <p className="text-sm">
                 Trained to decline inappropriate requests.
@@ -125,7 +128,7 @@ export default function MyWriterPage() {
                 back.
               </p>
               <p className="text-sm">
-                Overwhelming disparity of user‐base preferences can lead into
+                Overwhelming disparity of user-base preferences can lead into
                 prompt return delay.
               </p>
             </div>
@@ -153,12 +156,9 @@ export default function MyWriterPage() {
             </span>
           </div>
         </section>
-        <div className="absolute bottom-4 left-4 flex gap-2">
-          <button className="border bg-gray-200 text-black px-3 py-1">
-            History
-          </button>
-          <button className="border bg-black text-white px-3 py-1">
-            Main
+        <div className="absolute bottom-4 left-3 flex gap-2">
+          <button className="bg-battleship shadow-sm flex items-center justify-center text-center hover:bg-eggshell border bg-black text-white px-3 py-1" onClick={returnToBookshelf}>
+            Return to Bookshelf
           </button>
         </div>
       </main>
