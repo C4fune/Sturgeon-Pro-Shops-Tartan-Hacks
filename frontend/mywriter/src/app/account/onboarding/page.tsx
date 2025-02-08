@@ -72,7 +72,7 @@ export default function Onboarding() {
     let response = await fetch("/api/user/" + session?.user?.email + "/match")
     let match = await response.json()
 
-    setMatch(match.name)    
+    setMatch(match.name)
 
     await delay(1000);
 
