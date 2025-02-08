@@ -139,7 +139,7 @@ export default function MyWriterPage() {
               </label>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              “Reworks on future implementations revolving around OpenAI Sora alongside a backend that stores videos.”
+              MyStory is working on future implementations (V.1.0.1) revolving around OpenAI Sora alongside a backend that stores videos.
             </p>
           </div>
           <div className="border border-gray-300 rounded p-3 mb-3">
@@ -156,7 +156,7 @@ export default function MyWriterPage() {
               </label>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              “Text Prompts should be used for cases where you want MyWriter to generate a story!”
+              Text Prompts should be used for cases where you want MyWriter to generate a story!
             </p>
           </div>
           <div className="mb-6">
