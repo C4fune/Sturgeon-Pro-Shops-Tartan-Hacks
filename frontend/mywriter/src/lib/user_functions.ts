@@ -41,5 +41,6 @@ export async function getUserData(username: string) {
 }
 
 export async function addWriterOnboardingData(writerID: string, writerData: Author) {
+    console.log(writerData)
     await setDoc(doc(db, 'writers', writerID), writerData)
 }
