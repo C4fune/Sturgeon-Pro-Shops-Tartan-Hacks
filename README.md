@@ -9,9 +9,6 @@
 - [About](#about)
 - [Update_logs](#update_logs)
 - [Installation](#installation)
-- [Contributing](#contributing)
-- [License](#license)
-
 ---
 
 ## About
@@ -22,14 +19,15 @@
 
 ## Update_Logs
 
-- **v.1.0.0.u1:** Implementation of GPT 3.5 that was custom trained to solely focus on using given information
-- **v.1.0.0.u2:** Custom Algorithm that takes onboarding input from individual users and matches them to the best fit author within the database.
-- **v.1.0.0.u3:** Describe the feature and its benefit.
-- **v.1.0.0.u4:** Implementation of GPT 3.5 that was custom trained to solely focus on using given information
-- **v.1.0.0.u5:** Custom Algorithm that takes onboarding input from individual users and matches them to the best fit author within the database.
-- **v.1.0.0.u:** Describe the feature and its benefit.
-  
- 
+### v1.0.0
+- **Custom GPT 3.5 Integration:** Deployed a custom-trained GPT 3.5 model designed to generate content that strictly adheres to the provided data, ensuring accuracy and relevance.
+- **Personalized Author Matching:** Developed an advanced algorithm that evaluates user onboarding inputs to seamlessly match users with the most suitable writer from our curated database, enhancing both user satisfaction and content quality.
+- **Personalized Content Tailored for Individuals** Users can at anytime fix their onboarding inputs, and find a new writer that meets his/her needs.
+
+### v1.0.1 (upcoming)
+- **Video Generation** Possible implementation using Sora or Gemini Vix to create non-animate videos (more like film) for users to enjoy various types of stories, such as manga.
+- **Accessiblity for Userbase** Users can follow more than one writer, erasing the current gridlock of one author per user.
+
 ---
 
 ## Installation
@@ -46,5 +44,4 @@ run, npm install and npm run dev to view your website in localhost:3000.
 
 ---
 
-## Installation
 
