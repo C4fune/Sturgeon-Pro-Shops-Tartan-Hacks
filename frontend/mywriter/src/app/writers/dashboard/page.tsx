@@ -13,11 +13,16 @@ interface QueueItem {
   analysis: string;
 }
 
+
+
 export default function WriterDashboard() {
   const { data: session } = useSession();
   const router = useRouter();
   const [queue, setQueue] = useState<QueueItem[]>([]);
   const [loading, setLoading] = useState(true);
+  function returnToHome() {
+    router.push("/");
+  }
 
   function handlePlusClick() {
     router.push("/writers/authorGPT");
@@ -55,7 +60,7 @@ export default function WriterDashboard() {
 
   return (
     <main className="min-h-screen p-8 sm:p-20 font-robotoMono bg-eggshell">
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">Writer Dashboard</h1>
         <Link href="/writers/followers">
           <button className="bg-black rounded hover:bg-eggshell hover:text-black border-transparent hover:border-battleship border-2 text-white px-3 py-1">
@@ -63,6 +68,13 @@ export default function WriterDashboard() {
           </button>
         </Link>
       </div>
+      <button
+            className="bg-black rounded hover:bg-eggshell hover:text-black border-transparent hover:border-battleship border-2 text-white px-3 py-1 mb-4"
+            onClick={returnToHome}
+          >
+            Return to Home
+          </button>
+    
       <section>
         <h2 className="text-2xl mb-4">Prompt Queue</h2>
         {loading ? (
