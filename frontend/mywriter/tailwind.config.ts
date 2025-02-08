@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#E3DFCC", // Example: Dark background
-        text: "#0A0908", // Example: White text
-        secondary: "#798478", // Example: Gray text
-        accept: "#216E61", // Example: Green for success
-        reject: "#E94F37", // Example: Red for errors
+        eggshell: "#E3DFCC", // Beige background color
+        black: "#0A0908", // Almost Black color for text
+        battleship: "#798478", // Greenish Grey color for  text and buttons
+        accept: "#216E61", // Green for accept
+        reject: "#E94F37", // Red for errors
       },
       fontFamily: {
         inter: "var(--font-inter)",

@@ -6,7 +6,7 @@ require("dotenv").config();
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-primary">
+    <main className="flex flex-col items-center justify-center min-h-screen bg-eggshell">
       <div className="text-center">
         <h1 className="text-6xl font-bold mb-4 font-robotoMono">MyWriter</h1>
         <p className="text-xl mb-8">
@@ -14,7 +14,7 @@ export default function Home() {
         </p>
         <div className="flex justify-center space-x-4">
           <LoginButton />
-          <button className="bg-text text-primary px-4 py-2 rounded-lg hover:bg-gray-700">
+          <button className="bgdark text-eggshell px-4 py-2 rounded-lg hover:bg-gray-700">
             <a href="https://docs.google.com/presentation/d/1lMtLE8DsY-DJqViKbghTCm6WyT0A7UI5MA8Kp7G8JcI/edit?usp=sharing">
               Learn More
             </a>

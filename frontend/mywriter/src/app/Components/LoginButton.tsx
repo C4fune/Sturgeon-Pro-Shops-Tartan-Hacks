@@ -37,7 +37,7 @@ export default function LoginButton() {
   return (
     <div className="flex-col">
       <button
-        className="bg-secondary text-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-secondary border-2 border-secondary"
+        className="bg-battleship text-eggshell px-4 py-2 rounded-lg hover:bg-eggshell hover:text-battleship border-2 border-battleship"
         onClick={() => signIn()}
       >
         Login
