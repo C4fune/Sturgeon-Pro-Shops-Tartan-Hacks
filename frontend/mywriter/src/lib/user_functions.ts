@@ -31,7 +31,8 @@ export async function register(userID: string, username: string) {
 
 export async function addOnboardingData(userID: string, interests: Interests) {
     await updateDoc(doc(db, 'users', userID), {
-        interests: interests
+        interests: interests,
+        onboarding: true
     })
 }
 

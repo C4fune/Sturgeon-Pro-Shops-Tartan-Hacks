@@ -15,8 +15,8 @@ export default function MatchInProgress(props: {match: string}) {
                     </p>
 
                     <div className="flex gap-5">
-                        <button disabled className="w-full bg-indigo-300 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
-                            <Link href="/account">Go to My Bookshelf</Link>
+                        <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                            <Link href="/account/bookshelf">Go to My Bookshelf</Link>
                         </button>
                     </div>
                 </div>
