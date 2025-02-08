@@ -60,3 +60,17 @@ export async function updateMatchedAuthor(userID: string, writerID: string) {
         followers: arrayUnion(userID)
     })
 }
+
+export async function addStoryRequest(fromID: string, fromName: string, toID: string, request: string) {
+    await updateDoc(doc(db, 'writers', toID), {
+        queue: arrayUnion({
+            fromID: fromID,
+            fromName: fromName,
+            body: request
+        })
+    })
+}
+
+export async function getStoryRequests(writerID: string) {
+    return (await getDoc(doc(db, 'writers', writerID))).data()?.queue ?? []
+}

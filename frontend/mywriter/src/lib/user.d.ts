@@ -33,6 +33,12 @@ export interface Author {
     samples: string[]
     style: string
     followers: string[]
+    queue: QueueRequest
+}
+
+export interface QueueRequest {
+    from: string
+    prompt: string
 }
 
 export interface GenreRatings {
