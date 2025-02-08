@@ -3,6 +3,7 @@ export interface User {
     books: Book[]
     interests: Interests
     onboarding: boolean
+    matchedAuthor: string
 }
 
 export interface Interests {
