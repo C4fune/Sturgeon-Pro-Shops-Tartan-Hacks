@@ -25,7 +25,7 @@ export default function LoginButtonRow() {
             href="account/bookshelf/"
             className="bg-battleship text-eggshell px-4 py-2 rounded-lg hover:bg-eggshell hover:text-battleship border-2 border-battleship"
           >
-            Go to Profile
+            Go to Bookshelf
           </Link>
           <button
             className="bg-battleship text-eggshell px-4 py-2 rounded-lg hover:bg-eggshell hover:text-battleship border-2 border-battleship"
