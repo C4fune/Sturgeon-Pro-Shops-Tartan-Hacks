@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { enableMultiTabIndexedDbPersistence, getDocs, getFirestore } from "firebase/firestore";
+import { getDocs, getFirestore } from "firebase/firestore";
 import { doc, collection, getDoc, addDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore"; 
 import { GenreRatings, Interests, Author, User, Book } from "./user";
 import { randomUUID } from "crypto";
@@ -79,7 +79,10 @@ export async function getStoryRequests(writerID: string) {
 
 export async function pushBookToUser(userID: string, book: Book) {
     await updateDoc(doc(db, 'users', userID), {
-        books: arrayUnion(book)
+        books: arrayUnion({
+            ...book,
+            id: randomUUID()
+        })
     })
 }
 

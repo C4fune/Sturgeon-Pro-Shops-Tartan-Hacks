@@ -102,10 +102,9 @@ export default function MyWriterPage() {
         const titleReply =
           title.choices?.[0]?.message?.content || "No response from API";
 
-        const book: Book = {
+        const book: any = {
           title: titleReply,
-          body: assistantReply,
-          id: randomUUID()
+          body: assistantReply
         } 
 
         await fetch(`/api/user/${queueItem?.fromID}/pushBook`, {
