@@ -36,6 +36,13 @@ ___
 - **Video Generation** Possible implementation using Sora or Gemini Vix to create non-animate videos (more like film) for users to enjoy various types of stories, such as manga.
 - **Accessiblity for Userbase** Users can follow more than one writer, erasing the current gridlock of one author per user.
 
+
+### v.1.0.2 (upcoming)
+- **Video Generation Cont.** Possible implementation focusing Vix (Sora has no API released yet).
+  ***Few implementation Ideas*** Utilize 3.5 Turbo to create film prompts, and have it generate film shot ideas that feed those ideas to Vix to create a film that gives authors more control throughout the creating process.
+- **Documentation** Create documentation that explains how the app works in general.
+
+
 ---
 
 ## Installation
